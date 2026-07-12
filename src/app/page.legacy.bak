@@ -35,7 +35,7 @@ export default function Home() {
             <h2 id="tool-picker-title">어떤 AI가 궁금하신가요?</h2>
             <p>
               많이 쓰이는 AI부터 순서대로 정리했습니다. 원하는 도구를 선택하면
-              관련 글 목록에서 사용법과 가격, 자주 묻는 질문을 볼 수 있습니다.
+              사용법과 가격, 자주 묻는 질문을 볼 수 있습니다.
             </p>
           </div>
           <div className="tool-grid">
