@@ -31,6 +31,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  verification: {
+      google: 'google-site-verification=VjOMd8k8D9KQHliUTTFNSySNKw5rXgvkVQM_FoZA8vU', // 구글 서치 콘솔
+  }
 };
 
 export default function RootLayout({
