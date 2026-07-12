@@ -91,19 +91,14 @@ export function getAllPosts(): Post[] {
     .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
 }
 
-export const pages =
-  process.env.NODE_ENV === "production"
-    ? getAllPosts()
-    : [];
+export function getPages(): Post[] {
+  return getAllPosts();
+}
+
+export const pages = getPages();
 
 export function getPage(slug: string) {
   return getPages().find((page) => page.slug === slug);
-}
-
-export function getPages(): Post[] {
-  return process.env.NODE_ENV === "development"
-    ? getAllPosts()
-    : pages;
 }
 
 export function getRelatedPages(page: SeoPage): SeoPage[] {

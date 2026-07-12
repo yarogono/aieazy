@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
+import { siteConfig } from "@/content/site";
 import { aiTools, getTool, getToolArticles } from "@/content/tools";
 
 type ToolPageProps = {
@@ -49,7 +50,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
   }
 
   const articles = getToolArticles(tool);
-  const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com"}/tools/${tool.slug}`;
+  const canonicalUrl = `${siteConfig.url}/tools/${tool.slug}`;
 
   return (
     <>
@@ -67,7 +68,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
               "@type": "ListItem",
               position: index + 1,
               name: article.title,
-              url: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com"}/${article.slug}`,
+              url: `${siteConfig.url}/${article.slug}`,
             })),
           },
         }}

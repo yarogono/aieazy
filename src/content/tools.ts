@@ -1,4 +1,4 @@
-import { getPage, pages, type Post } from "./pages";
+import { getPage, getPages, type Post } from "./pages";
 
 export type AiTool = {
   slug: string;
@@ -103,5 +103,5 @@ export function getToolArticles(tool: AiTool): Post[] {
     return selectedPages;
   }
 
-  return pages.filter((page) => page.category === tool.name);
+  return getPages().filter((page) => page.category === tool.name);
 }

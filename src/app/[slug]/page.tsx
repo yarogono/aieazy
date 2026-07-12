@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
-import { getPage, getPostHtml, getRelatedPages, pages } from "@/content/pages";
+import { getPage, getPages, getPostHtml, getRelatedPages } from "@/content/pages";
+import { siteConfig } from "@/content/site";
 
 type PageProps = {
   params: Promise<{
@@ -12,7 +13,7 @@ type PageProps = {
 };
 
 export function generateStaticParams() {
-  return pages.map((page) => ({
+  return getPages().map((page) => ({
     slug: page.slug,
   }));
 }
@@ -53,7 +54,7 @@ export default async function DetailPage({ params }: PageProps) {
   }
 
   const relatedPages = getRelatedPages(page);
-  const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com"}/${page.slug}`;
+  const canonicalUrl = `${siteConfig.url}/${page.slug}`;
 
   return (
     <>

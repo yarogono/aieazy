@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
+import { siteConfig } from "@/content/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,17 +15,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com"),
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "AI 쉬움",
-    template: "%s | AI 쉬움",
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
   },
   description:
     "ChatGPT, Cursor AI, Claude, Gemini 같은 AI 도구를 어렵지 않게 이해할 수 있도록 가격, 사용법, 오류 해결, 비교 정보를 정리합니다.",
   openGraph: {
-    title: "AI 쉬움",
-    description:
-      "AI 도구를 처음 쓰는 사람을 위한 쉬운 가격, 사용법, 오류 해결, 비교 정보입니다.",
+    title: siteConfig.name,
+    description: siteConfig.description,
     type: "website",
     locale: "ko_KR",
   },

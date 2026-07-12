@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { pages } from "@/content/pages";
+import { siteConfig } from "@/content/site";
 import { aiTools } from "@/content/tools";
 
 export default function Home() {
@@ -13,8 +14,8 @@ export default function Home() {
         data={{
           "@context": "https://schema.org",
           "@type": "WebSite",
-          name: "AI 쉬움",
-          url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com",
+          name: siteConfig.name,
+          url: siteConfig.url,
           inLanguage: "ko-KR",
         }}
       />
