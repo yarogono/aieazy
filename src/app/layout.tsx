@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   verification: {
-      google: 'VjOMd8k8D9KQHliUTTFNSySNKw5rXgvkVQM_FoZA8vU', // 구글 서치 콘솔 식별 코드
+      google: 'LZPIpa762YBaEvnn4vlmglSsBX9nDQxkyXwp1Mmowzc', // 구글 서치 콘솔 식별 코드
   },
   other: {
     'naver-site-verification': '80d0f57f72199173b7b48c71990074b791ec99f8', // 네이버 서치 어드바이저 식별 코드
