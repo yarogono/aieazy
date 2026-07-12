@@ -80,6 +80,39 @@ main {
   color: var(--foreground);
 }
 
+.site-footer {
+  width: min(1120px, calc(100% - 40px));
+  margin: 34px auto 0;
+  padding: 28px 0 36px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.site-footer strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--foreground);
+}
+
+.site-footer p {
+  font-size: 14px;
+}
+
+.site-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px 16px;
+  font-size: 14px;
+}
+
+.site-footer nav a:hover {
+  color: var(--foreground);
+}
+
 .hero {
   min-height: 520px;
   display: flex;
@@ -442,6 +475,10 @@ p {
   font-size: 18px;
 }
 
+.trust-page .article-section p + p {
+  margin-top: 12px;
+}
+
 .faq-list {
   display: grid;
   gap: 14px;
@@ -542,6 +579,16 @@ p {
     flex-direction: column;
     justify-content: center;
     padding: 18px 0;
+  }
+
+  .site-footer {
+    width: min(100% - 28px, 1120px);
+    flex-direction: column;
+    margin-top: 18px;
+  }
+
+  .site-footer nav {
+    justify-content: flex-start;
   }
 
   .site-header nav {
@@ -678,6 +725,10 @@ p {
 @media (max-width: 420px) {
   main,
   .site-header {
+    width: min(100% - 22px, 1120px);
+  }
+
+  .site-footer {
     width: min(100% - 22px, 1120px);
   }
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { pages } from "@/content/pages";
@@ -82,6 +83,7 @@ export default function Home() {
           </ul>
         </section>
       </main>
+      <Footer />
     </>
   );
 }

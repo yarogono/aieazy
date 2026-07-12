@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { siteConfig } from "@/content/site";
@@ -104,6 +105,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
           </div>
         </section>
       </main>
+      <Footer />
     </>
   );
 }

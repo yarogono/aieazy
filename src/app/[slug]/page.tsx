@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { getPage, getPages, getPostHtml, getRelatedPages } from "@/content/pages";
@@ -145,6 +146,7 @@ export default async function DetailPage({ params }: PageProps) {
           ) : null}
         </article>
       </main>
+      <Footer />
     </>
   );
 }

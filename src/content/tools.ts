@@ -17,7 +17,18 @@ export const aiTools: AiTool[] = [
     badge: "입문 추천",
     description:
       "챗GPT 사용법, 가격, 로그인 오류, Claude와의 차이처럼 처음 쓰는 사람이 많이 찾는 글을 모았습니다.",
-    articleSlugs: ["chatgpt", "chatgpt-price", "chatgpt-login-error", "claude-vs-chatgpt"],
+    articleSlugs: [
+      "chatgpt",
+      "chatgpt-price",
+      "chatgpt-login-error",
+      "claude-vs-chatgpt",
+      "chatgpt-prompts",
+      "chatgpt-prompts-for-blog",
+      "chatgpt-prompts-for-office",
+      "chatgpt-prompts-for-students",
+      "ai-email-writing",
+      "ai-summary-tools",
+    ],
   },
   {
     slug: "gemini",
