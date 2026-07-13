@@ -4,6 +4,7 @@ import { siteConfig } from "@/content/site";
 import { getOgImageUrl } from "@/lib/seo";
 import { aiTools } from "@/content/tools";
 import { trustPages } from "@/content/trustPages";
+import { allHubs } from "@/content/topics";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = getPages();
@@ -30,6 +31,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: 0.85,
       images: [getOgImageUrl("/tools/" + tool.slug)],
+    })),
+    ...allHubs.map((hub) => ({
+      url: siteConfig.url + hub.path,
+      lastModified: new Date(latestPostDate),
+      changeFrequency: "weekly" as const,
+      priority: 0.82,
+      images: [getOgImageUrl(hub.path)],
     })),
     ...trustPages.map((page) => ({
       url: `${siteConfig.url}/${page.slug}`,

@@ -2,8 +2,10 @@ import Link from "next/link";
 
 const navItems = [
   { href: "/tools/chatgpt", label: "ChatGPT" },
-  { href: "/tools/cursor-ai", label: "Cursor AI" },
-  { href: "/claude-vs-chatgpt", label: "비교" },
+  { href: "/topics/prompts", label: "프롬프트" },
+  { href: "/topics/pricing", label: "가격" },
+  { href: "/topics/errors", label: "오류" },
+  { href: "/compare", label: "비교" },
 ];
 
 export function Header() {

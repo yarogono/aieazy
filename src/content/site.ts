@@ -17,8 +17,10 @@ function getSiteUrl() {
 }
 
 export const siteConfig = {
-  name: "AI 쉬움",
+  name: "AI \uC26C\uC6C0",
+  alternateName: "AIEazy",
   description:
-    "AI 도구를 처음 쓰는 사람을 위한 쉬운 사용법, 가격, 오류 해결, 비교 정보입니다.",
+    "AI \uB3C4\uAD6C\uB97C \uCC98\uC74C \uC4F0\uB294 \uC0AC\uB78C\uC744 \uC704\uD55C \uC26C\uC6B4 \uC0AC\uC6A9\uBC95, \uAC00\uACA9, \uC624\uB958 \uD574\uACB0, \uBE44\uAD50 \uC815\uBCF4\uC785\uB2C8\uB2E4.",
   url: getSiteUrl(),
+  sameAs: [],
 };

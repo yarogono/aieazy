@@ -1,6 +1,7 @@
 import type { FaqItem, SeoPage } from "@/content/pages";
 import { siteConfig } from "@/content/site";
 import type { AiTool } from "@/content/tools";
+import type { TopicHub } from "@/content/topics";
 
 export type JsonLdObject = Record<string, unknown>;
 
@@ -41,6 +42,39 @@ export function cleanJsonLd<T>(value: T): T {
   }
 
   return value;
+}
+
+export function createOrganizationJsonLd(): JsonLdObject {
+  return cleanJsonLd({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteConfig.name,
+    alternateName: "alternateName" in siteConfig ? siteConfig.alternateName : undefined,
+    url: siteConfig.url,
+    logo: absoluteUrl("/favicon.ico"),
+    sameAs: siteConfig.sameAs.length > 0 ? siteConfig.sameAs : undefined,
+  });
+}
+
+export function createWebSiteJsonLd(): JsonLdObject {
+  return cleanJsonLd({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteConfig.name,
+    alternateName: "alternateName" in siteConfig ? siteConfig.alternateName : undefined,
+    url: siteConfig.url,
+    inLanguage: "ko-KR",
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+      logo: absoluteUrl("/favicon.ico"),
+    },
+  });
+}
+
+export function createSiteIdentityJsonLd(): JsonLdObject[] {
+  return [createOrganizationJsonLd(), createWebSiteJsonLd()];
 }
 
 function publisher() {
@@ -121,6 +155,31 @@ export function createCollectionPageJsonLd(tool: AiTool, articles: SeoPage[]): J
     description: tool.description,
     inLanguage: "ko-KR",
     url: canonicalUrl,
+    isPartOf: {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: articles.map((article, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: article.title,
+        url: absoluteUrl("/" + article.slug),
+      })),
+    },
+  };
+}
+
+export function createTopicCollectionJsonLd(hub: TopicHub, articles: SeoPage[]): JsonLdObject {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: hub.title,
+    description: hub.description,
+    inLanguage: "ko-KR",
+    url: absoluteUrl(hub.path),
     isPartOf: {
       "@type": "WebSite",
       name: siteConfig.name,

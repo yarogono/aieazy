@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+User-agent: Yeti
+Allow: /
+
+Sitemap: https://aieazy.com/sitemap.xml
+
+#DaumWebMasterTool:9b5fa78503e82d090e29205d7a70432a4e3d87d5197d77654ca001d3ece83117:QmI+4F2t5jK1pbxPC/0WPA==

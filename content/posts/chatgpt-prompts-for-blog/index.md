@@ -1,5 +1,5 @@
 ---
-title: "블로그 글쓰기 ai 자동화 챗지피티 제미나이 프롬프트 모음"
+title: "블로그 글쓰기 ai 자동화 챗지피티 프롬프트 모음"
 description: "블로그 글쓰기 ai 자동화, 주제 찾기, 제목 만들기, 목차 구성, 본문 초안, SEO 점검에 사용할 수 있는 ChatGPT 프롬프트를 정리했습니다."
 category: "ChatGPT"
 intent: "활용"
