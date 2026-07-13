@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { siteConfig } from "@/content/site";
+import { createBreadcrumbJsonLd, createCollectionPageJsonLd, getOgImageUrl } from "@/lib/seo";
 import { aiTools, getTool, getToolArticles } from "@/content/tools";
 
 type ToolPageProps = {
@@ -38,6 +39,15 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
       description: tool.description,
       type: "website",
       locale: "ko_KR",
+      url: "/tools/" + tool.slug,
+      siteName: siteConfig.name,
+      images: [{ url: getOgImageUrl("/tools/" + tool.slug), width: 1200, height: 630, alt: `${tool.name} 가이드 모음` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${tool.name} 가이드 모음`,
+      description: tool.description,
+      images: [getOgImageUrl("/tools/" + tool.slug)],
     },
   };
 }
@@ -51,29 +61,16 @@ export default async function ToolPage({ params }: ToolPageProps) {
   }
 
   const articles = getToolArticles(tool);
-  const canonicalUrl = `${siteConfig.url}/tools/${tool.slug}`;
+  const collectionJsonLd = createCollectionPageJsonLd(tool, articles);
+  const breadcrumbJsonLd = createBreadcrumbJsonLd([
+    { name: siteConfig.name, item: "/" },
+    { name: tool.name, item: "/tools/" + tool.slug },
+  ]);
 
   return (
     <>
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "CollectionPage",
-          name: `${tool.name} 가이드 모음`,
-          description: tool.description,
-          inLanguage: "ko-KR",
-          url: canonicalUrl,
-          mainEntity: {
-            "@type": "ItemList",
-            itemListElement: articles.map((article, index) => ({
-              "@type": "ListItem",
-              position: index + 1,
-              name: article.title,
-              url: `${siteConfig.url}/${article.slug}`,
-            })),
-          },
-        }}
-      />
+      <JsonLd data={collectionJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       <Header />
       <main>
         <section className="tool-hero">

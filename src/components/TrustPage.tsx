@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { siteConfig } from "@/content/site";
+import { createBreadcrumbJsonLd, createWebPageJsonLd } from "@/lib/seo";
 import type { TrustPage as TrustPageType } from "@/content/trustPages";
 
 type TrustPageProps = {
@@ -10,21 +11,16 @@ type TrustPageProps = {
 };
 
 export function TrustPage({ page }: TrustPageProps) {
-  const canonicalUrl = `${siteConfig.url}/${page.slug}`;
+  const webPageJsonLd = createWebPageJsonLd(page);
+  const breadcrumbJsonLd = createBreadcrumbJsonLd([
+    { name: siteConfig.name, item: "/" },
+    { name: page.title, item: "/" + page.slug },
+  ]);
 
   return (
     <>
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          name: page.title,
-          description: page.description,
-          inLanguage: "ko-KR",
-          url: canonicalUrl,
-          dateModified: page.updatedAt,
-        }}
-      />
+      <JsonLd data={webPageJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       <Header />
       <main>
         <article className="article trust-page">

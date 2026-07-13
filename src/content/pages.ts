@@ -101,11 +101,57 @@ export function getPage(slug: string) {
   return getPages().find((page) => page.slug === slug);
 }
 
-export function getRelatedPages(page: SeoPage): SeoPage[] {
-  return page.related.flatMap((slug) => {
+function scoreRelatedPage(source: SeoPage, candidate: SeoPage) {
+  let score = 0;
+
+  if (source.category === candidate.category) {
+    score += 30;
+  }
+
+  if (source.intent === candidate.intent) {
+    score += 10;
+  }
+
+  const candidateText = (candidate.title + " " + candidate.description + " " + candidate.aliases.join(" ")).toLowerCase();
+  const sourceTerms = [
+    ...source.aliases,
+    ...source.title.split(/[\s,.:;!?()]+/),
+    ...source.description.split(/[\s,.:;!?()]+/),
+  ]
+    .map((term) => term.trim().toLowerCase())
+    .filter((term) => term.length > 1);
+
+  for (const term of new Set(sourceTerms)) {
+    if (candidateText.includes(term)) {
+      score += 2;
+    }
+  }
+
+  return score;
+}
+
+export function getRelatedPages(page: SeoPage, limit = 4): SeoPage[] {
+  const allPages = getPages().filter((candidate) => candidate.slug !== page.slug);
+  const usedSlugs = new Set<string>();
+  const explicit = page.related.flatMap((slug) => {
     const relatedPage = getPage(slug);
-    return relatedPage ? [relatedPage] : [];
+
+    if (!relatedPage || relatedPage.slug === page.slug || usedSlugs.has(relatedPage.slug)) {
+      return [];
+    }
+
+    usedSlugs.add(relatedPage.slug);
+    return [relatedPage];
   });
+
+  const automatic = allPages
+    .filter((candidate) => !usedSlugs.has(candidate.slug))
+    .map((candidate) => ({ page: candidate, score: scoreRelatedPage(page, candidate) }))
+    .filter((candidate) => candidate.score > 0)
+    .sort((a, b) => b.score - a.score || b.page.updatedAt.localeCompare(a.page.updatedAt))
+    .map((candidate) => candidate.page);
+
+  return [...explicit, ...automatic].slice(0, limit);
 }
 
 export async function getPostHtml(slug: string) {

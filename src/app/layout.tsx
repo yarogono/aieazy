@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import { siteConfig } from "@/content/site";
+import { getOgImageUrl } from "@/lib/seo";
 import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
@@ -28,6 +29,15 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     type: "website",
     locale: "ko_KR",
+    url: "/",
+    siteName: siteConfig.name,
+    images: [{ url: getOgImageUrl(""), width: 1200, height: 630, alt: siteConfig.name }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [getOgImageUrl("")],
   },
   alternates: {
     canonical: "/",

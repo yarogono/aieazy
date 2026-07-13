@@ -6,6 +6,12 @@ import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { getPage, getPages, getPostHtml, getRelatedPages } from "@/content/pages";
 import { siteConfig } from "@/content/site";
+import {
+  createArticleJsonLd,
+  createBreadcrumbJsonLd,
+  createFaqJsonLd,
+  getOgImageUrl,
+} from "@/lib/seo";
 
 type PageProps = {
   params: Promise<{
@@ -33,14 +39,23 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     alternates: {
       canonical: `/${page.slug}`,
     },
+    authors: [{ name: siteConfig.name, url: siteConfig.url }],
     openGraph: {
       title: page.title,
       description: page.description,
       type: "article",
       locale: "ko_KR",
+      url: "/" + page.slug,
+      siteName: siteConfig.name,
       publishedTime: page.updatedAt,
       modifiedTime: page.updatedAt,
-      images: page.image ? [{ url: page.image }] : undefined,
+      images: [{ url: getOgImageUrl("/" + page.slug), width: 1200, height: 630, alt: page.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: page.title,
+      description: page.description,
+      images: [getOgImageUrl("/" + page.slug)],
     },
   };
 }
@@ -55,39 +70,19 @@ export default async function DetailPage({ params }: PageProps) {
   }
 
   const relatedPages = getRelatedPages(page);
-  const canonicalUrl = `${siteConfig.url}/${page.slug}`;
+  const articleJsonLd = createArticleJsonLd(page);
+  const faqJsonLd = createFaqJsonLd(page.faq);
+  const breadcrumbJsonLd = createBreadcrumbJsonLd([
+    { name: siteConfig.name, item: "/" },
+    { name: page.category, item: "/" + page.slug },
+    { name: page.title, item: "/" + page.slug },
+  ]);
 
   return (
     <>
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Article",
-          headline: page.title,
-          description: page.description,
-          datePublished: page.updatedAt,
-          dateModified: page.updatedAt,
-          inLanguage: "ko-KR",
-          image: page.image,
-          mainEntityOfPage: canonicalUrl,
-        }}
-      />
-      {page.faq.length > 0 ? (
-        <JsonLd
-          data={{
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: page.faq.map((item) => ({
-              "@type": "Question",
-              name: item.question,
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: item.answer,
-              },
-            })),
-          }}
-        />
-      ) : null}
+      <JsonLd data={articleJsonLd} />
+      {faqJsonLd ? <JsonLd data={faqJsonLd} /> : null}
+      <JsonLd data={breadcrumbJsonLd} />
       <Header />
       <main>
         <article className="article">
