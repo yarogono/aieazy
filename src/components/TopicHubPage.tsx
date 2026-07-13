@@ -41,13 +41,17 @@ export function TopicHubPage({ hub }: TopicHubPageProps) {
             <h2>{hub.label}에 맞는 가이드</h2>
           </div>
           <div className="article-list">
-            {articles.map((article) => (
+            {articles.map((article, index) => (
               <Link className="article-list-item" key={article.slug} href={"/" + article.slug}>
-                <span>
-                  {article.category} · {article.intent}
+                <span className="guide-rank">{index + 1}</span>
+                <span className="guide-copy">
+                  <span className="guide-meta">
+                    {article.category} · {article.intent} · 업데이트 {article.updatedAt}
+                  </span>
+                  <strong>{article.title}</strong>
+                  <p>{article.description}</p>
                 </span>
-                <strong>{article.title}</strong>
-                <p>{article.description}</p>
+                <span className="guide-cta">보기</span>
               </Link>
             ))}
           </div>

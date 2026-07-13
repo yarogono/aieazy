@@ -10,6 +10,7 @@ import { createSiteIdentityJsonLd } from "@/lib/seo";
 export default function Home() {
   const featured = pages.slice(0, 6);
   const identityJsonLd = createSiteIdentityJsonLd();
+  const guideCount = pages.length;
 
   return (
     <>
@@ -22,6 +23,20 @@ export default function Home() {
           <p>
             {"ChatGPT, Gemini, Claude, Cursor AI처럼 사람들이 자주 찾는 AI 도구의 사용법, 가격, 오류 해결, 비교 정보를 쉽게 정리했습니다."}
           </p>
+          <div className="hero-metrics" aria-label="사이트 주요 정보">
+            <span>
+              <strong>{aiTools.length}</strong>
+              {"AI 도구"}
+            </span>
+            <span>
+              <strong>{guideCount}</strong>
+              {"가이드"}
+            </span>
+            <span>
+              <strong>{allHubs.length}</strong>
+              {"주제별 모음"}
+            </span>
+          </div>
         </section>
 
         <section className="section tool-picker" aria-labelledby="tool-picker-title">
@@ -36,11 +51,17 @@ export default function Home() {
             {aiTools.map((tool, index) => (
               <Link className="tool-button" key={tool.name} href={"/tools/" + tool.slug}>
                 <span className="tool-rank">{index + 1}</span>
+                <span className="tool-logo" aria-hidden="true">
+                  {tool.name.slice(0, 1)}
+                </span>
                 <span className="tool-copy">
                   <strong>{tool.name}</strong>
                   <small>{tool.label}</small>
                 </span>
-                <span className="tool-badge">{tool.badge}</span>
+                <span className="tool-meta">
+                  <span>{tool.badge}</span>
+                  <small>{tool.articleSlugs.length}개 글</small>
+                </span>
               </Link>
             ))}
           </div>
@@ -68,12 +89,18 @@ export default function Home() {
             <p className="eyebrow">{"많이 찾는 가이드"}</p>
             <h2>{"지금 바로 확인하기 좋은 AI 도구 정보"}</h2>
           </div>
-          <div className="card-grid">
-            {featured.map((page) => (
+          <div className="guide-list">
+            {featured.map((page, index) => (
               <Link className="card" key={page.slug} href={"/" + page.slug}>
-                <span>{page.category}</span>
-                <h3>{page.title}</h3>
-                <p>{page.description}</p>
+                <span className="guide-rank">{index + 1}</span>
+                <span className="guide-copy">
+                  <span className="guide-meta">
+                    {page.category} · {page.intent} · {page.updatedAt}
+                  </span>
+                  <h3>{page.title}</h3>
+                  <p>{page.description}</p>
+                </span>
+                <span className="guide-cta">보기</span>
               </Link>
             ))}
           </div>

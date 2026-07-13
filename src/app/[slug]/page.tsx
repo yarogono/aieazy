@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { getPage, getPages, getPostHtml, getRelatedPages } from "@/content/pages";
 import { siteConfig } from "@/content/site";
+import { aiTools } from "@/content/tools";
 import { getHubsForArticle } from "@/content/topics";
 import {
   createArticleJsonLd,
@@ -91,6 +92,7 @@ export default async function DetailPage({ params }: PageProps) {
   const relatedPages = getRelatedPages(page);
   const topicHubs = getHubsForArticle(page);
   const showFreshness = shouldShowFreshness(page);
+  const heroTags = [...page.aliases, ...topicHubs.map((hub) => hub.label)].slice(0, 10);
   const articleJsonLd = createArticleJsonLd(page);
   const faqJsonLd = createFaqJsonLd(page.faq);
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
@@ -105,65 +107,51 @@ export default async function DetailPage({ params }: PageProps) {
       {faqJsonLd ? <JsonLd data={faqJsonLd} /> : null}
       <JsonLd data={breadcrumbJsonLd} />
       <Header />
-      <main>
-        <article className="article">
+      <main className="article-shell">
+        <div className="article-layout">
+          <article className="article article-main">
           <nav className="breadcrumbs" aria-label="Breadcrumb">
-            <Link href="/">{"\uD648"}</Link>
+            <Link href="/">홈</Link>
             <span>/</span>
             <span>{page.category}</span>
           </nav>
 
-          <header className="article-header">
-            <p className="eyebrow">
-              {page.category} {"\u00B7"} {page.intent} {"\u00B7 \uC5C5\uB370\uC774\uD2B8"} {page.updatedAt}
-            </p>
+          <header className="article-hero-card">
+            <div className="article-type">
+              <span>{page.category.slice(0, 1)}</span>
+              <p>
+                {page.category}
+                <small>{page.intent}</small>
+              </p>
+            </div>
             <h1>{page.title}</h1>
-            <p>{page.summary}</p>
+            <div className="article-meta-row">
+              <span>{page.updatedAt}</span>
+              <span>최신 업데이트 {page.updatedAt}</span>
+              <span>by {siteConfig.alternateName}</span>
+            </div>
+            {heroTags.length > 0 ? (
+              <div className="article-tags" aria-label="관련 태그">
+                {heroTags.map((tag) => (
+                  <span key={tag}>#{tag}</span>
+                ))}
+              </div>
+            ) : null}
           </header>
 
-          {showFreshness ? (
-            <aside className="freshness-box" aria-label="\uCD5C\uC885 \uD655\uC778\uC77C">
-              <strong>{"\uCD5C\uC885 \uD655\uC778\uC77C"}</strong>
-              <span>{page.updatedAt}</span>
-              <p>{"\uAC00\uACA9, \uC815\uCC45, \uC624\uB958 \uBA54\uC2DC\uC9C0\uB294 \uC11C\uBE44\uC2A4 \uC81C\uACF5\uC0AC \uC0C1\uD669\uC5D0 \uB530\uB77C \uBC14\uB014 \uC218 \uC788\uC5B4 \uACF5\uC2DD \uD398\uC774\uC9C0\uC640 \uD568\uAED8 \uD655\uC778\uD558\uC138\uC694."}</p>
-            </aside>
-          ) : null}
-
-          {topicHubs.length > 0 ? (
-            <section className="topic-links" aria-label="\uAD00\uB828 \uC8FC\uC81C">
-              <strong>{"\uAD00\uB828 \uC8FC\uC81C"}</strong>
-              <div>
-                {topicHubs.map((hub) => (
-                  <Link key={hub.path} href={hub.path}>
-                    {hub.label}
-                  </Link>
-                ))}
-              </div>
-            </section>
-          ) : null}
-
-          {page.aliases.length > 0 ? (
-            <section className="alias-box" aria-label="\uAD00\uB828 \uAC80\uC0C9\uC5B4">
-              <h2>{"\uD568\uAED8 \uAC80\uC0C9\uB418\uB294 \uD45C\uD604"}</h2>
-              <div>
-                {page.aliases.map((alias) => (
-                  <span key={alias}>{alias}</span>
-                ))}
-              </div>
-            </section>
-          ) : null}
+          <p className="article-lead">{page.summary || page.description}</p>
 
           <div className="markdown-body" dangerouslySetInnerHTML={{ __html: postHtml }} />
 
           <section className="article-section trust-note">
-            <h2>{"\uC791\uC131\uACFC \uAC80\uC218 \uAE30\uC900"}</h2>
-            <p>{"\uC774 \uAE00\uC740 \uCD08\uBCF4 \uC0AC\uC6A9\uC790\uAC00 \uBC14\uB85C \uD655\uC778\uD560 \uC218 \uC788\uB294 \uC9C8\uBB38, \uC694\uAE08, \uC624\uB958 \uD574\uACB0, \uC0AC\uC6A9 \uC0C1\uD669\uC744 \uAE30\uC900\uC73C\uB85C \uC815\uB9AC\uD588\uC2B5\uB2C8\uB2E4."}</p>
-            <p>{"\uC694\uAE08\uC81C, \uC815\uCC45, \uAE30\uB2A5\uC740 \uBCC0\uACBD\uB420 \uC218 \uC788\uC73C\uBBC0\uB85C \uACB0\uC81C\uB098 \uC911\uC694\uD55C \uC5C5\uBB34 \uC801\uC6A9 \uC804\uC5D0\uB294 \uBC18\uB4DC\uC2DC \uAC01 \uC11C\uBE44\uC2A4\uC758 \uACF5\uC2DD \uBB38\uC11C\uB97C \uD568\uAED8 \uD655\uC778\uD574 \uC8FC\uC138\uC694."}</p>
+            <h2>작성과 검수 기준</h2>
+            <p>이 글은 초보 사용자가 바로 확인할 수 있는 질문, 요금, 오류 해결, 사용 상황을 기준으로 정리했습니다.</p>
+            <p>요금제, 정책, 기능은 변경될 수 있으므로 결제나 중요한 업무 적용 전에는 반드시 각 서비스의 공식 문서를 함께 확인해 주세요.</p>
           </section>
 
           {page.faq.length > 0 ? (
             <section className="article-section">
-              <h2>{"\uC790\uC8FC \uBB3B\uB294 \uC9C8\uBB38"}</h2>
+              <h2>자주 묻는 질문</h2>
               <div className="faq-list">
                 {page.faq.map((item) => (
                   <div key={item.question}>
@@ -174,20 +162,49 @@ export default async function DetailPage({ params }: PageProps) {
               </div>
             </section>
           ) : null}
+          </article>
 
-          {relatedPages.length > 0 ? (
-            <section className="article-section">
-              <h2>{"\uB2E4\uC74C\uC5D0 \uC77D\uC744 \uAE00"}</h2>
-              <div className="related-list">
-                {relatedPages.map((relatedPage) => (
-                  <Link key={relatedPage.slug} href={"/" + relatedPage.slug}>
-                    {relatedPage.title}
+          <aside className="article-sidebar" aria-label="추천 정보">
+            <section className="sidebar-promo">
+              <span>AI EASY PICK</span>
+              <strong>처음 쓰는 AI, 목적별로 빠르게 고르기</strong>
+              <p>가격, 오류, 프롬프트, 비교 글을 한 번에 확인하세요.</p>
+            </section>
+
+            {showFreshness ? (
+              <section className="sidebar-card">
+                <strong>최종 확인일</strong>
+                <span className="sidebar-date">{page.updatedAt}</span>
+                <p>가격, 정책, 오류 메시지는 서비스 제공사 상황에 따라 바뀔 수 있습니다.</p>
+              </section>
+            ) : null}
+
+            <section className="sidebar-card">
+              <strong>AI 도구 차트</strong>
+              <div className="sidebar-link-list">
+                {aiTools.slice(0, 6).map((tool, index) => (
+                  <Link key={tool.slug} href={"/tools/" + tool.slug}>
+                    <span>{index + 1}</span>
+                    {tool.name}
                   </Link>
                 ))}
               </div>
             </section>
-          ) : null}
-        </article>
+
+            {relatedPages.length > 0 ? (
+              <section className="sidebar-card">
+                <strong>다음에 읽을 글</strong>
+                <div className="sidebar-related">
+                  {relatedPages.map((relatedPage) => (
+                    <Link key={relatedPage.slug} href={"/" + relatedPage.slug}>
+                      {relatedPage.title}
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            ) : null}
+          </aside>
+        </div>
       </main>
       <Footer />
     </>

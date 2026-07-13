@@ -10,11 +10,21 @@ const navItems = [
 
 export function Header() {
   return (
-    <header className="site-header">
-      <Link href="/" className="brand" aria-label="AI 쉬움 홈">
-        AI 쉬움
-      </Link>
-      <nav aria-label="주요 메뉴">
+    <header className="site-header-wrap">
+      <div className="site-header-top">
+        <Link href="/tools/chatgpt" className="header-pill">
+          <span>1</span>
+          ChatGPT 입문 가이드
+        </Link>
+        <Link href="/" className="brand" aria-label="AI 쉬움 홈">
+          <span aria-hidden="true">AI</span>
+          AI 쉬움
+        </Link>
+        <Link href="/compare" className="header-promo">
+          AI 도구 비교 바로가기
+        </Link>
+      </div>
+      <nav className="site-header-nav" aria-label="주요 메뉴">
         {navItems.map((item) => (
           <Link key={item.href} href={item.href}>
             {item.label}
