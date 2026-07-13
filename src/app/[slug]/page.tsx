@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { CopyBlocks } from "@/components/CopyBlocks";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
@@ -142,6 +143,7 @@ export default async function DetailPage({ params }: PageProps) {
           <p className="article-lead">{page.summary || page.description}</p>
 
           <div className="markdown-body" dangerouslySetInnerHTML={{ __html: postHtml }} />
+          <CopyBlocks />
 
           <section className="article-section trust-note">
             <h2>작성과 검수 기준</h2>
