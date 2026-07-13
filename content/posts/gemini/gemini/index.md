@@ -1,6 +1,6 @@
 ---
 title: "Gemini 사용법: 구글 AI를 처음 시작하는 방법"
-description: "Gemini를 처음 쓰는 사람을 위한 기본 사용법, 구글 계정 연동, 무료와 유료 차이, 자주 묻는 질문 정리."
+description: "제미나이(Gemini)를 처음 쓰는 사람을 위한 기본 사용법, 구글 계정 연동, 무료와 유료 차이, 자주 묻는 질문 정리."
 category: "Gemini"
 intent: "허브"
 aliases: ["구글 Gemini", "제미나이", "구글 AI", "gemini ai"]
