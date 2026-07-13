@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AffiliateBox } from "@/components/AffiliateBox";
 import { CopyBlocks } from "@/components/CopyBlocks";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
+import { getAffiliate } from "@/content/affiliate";
 import { getPage, getPages, getPostHtml, getRelatedPages } from "@/content/pages";
 import { siteConfig } from "@/content/site";
 import { aiTools } from "@/content/tools";
@@ -94,6 +96,7 @@ export default async function DetailPage({ params }: PageProps) {
   const topicHubs = getHubsForArticle(page);
   const showFreshness = shouldShowFreshness(page);
   const heroTags = [...page.aliases, ...topicHubs.map((hub) => hub.label)].slice(0, 10);
+  const affiliate = getAffiliate(page.affiliate);
   const articleJsonLd = createArticleJsonLd(page);
   const faqJsonLd = createFaqJsonLd(page.faq);
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
@@ -141,6 +144,8 @@ export default async function DetailPage({ params }: PageProps) {
           </header>
 
           <p className="article-lead">{page.summary || page.description}</p>
+
+          {affiliate ? <AffiliateBox affiliate={affiliate} /> : null}
 
           <div className="markdown-body" dangerouslySetInnerHTML={{ __html: postHtml }} />
           <CopyBlocks />

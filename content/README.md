@@ -49,6 +49,7 @@ intent: "사용법"
 aliases: ["관련 검색어 1", "관련 검색어 2"]
 updatedAt: "2026-07-12"
 summary: "글 상단에 보일 요약 문장입니다."
+affiliate: "gamsgo"
 image: "https://aieazy.s3.ap-northeast-2.amazonaws.com/posts/example/cover.webp"
 related: ["chatgpt", "chatgpt-price"]
 faq:
@@ -90,3 +91,19 @@ https://aieazy.s3.ap-northeast-2.amazonaws.com/posts/chatgpt-login-error/cover.w
 - `aliases`에는 실제로 사람들이 함께 검색하는 표현을 넣습니다.
 - `faq`는 검색자가 바로 궁금해할 질문 위주로 작성합니다.
 - URL slug는 영어 소문자와 하이픈을 사용합니다.
+
+## 제휴 링크 표시 규칙
+
+구매, 구독, 가격 비교 맥락이 있는 글에만 frontmatter로 제휴 박스를 켭니다.
+
+```yaml
+affiliate: "gamsgo"
+```
+
+제휴 박스는 본문 요약 아래에 표시되며, 아래 문구를 함께 노출합니다.
+
+```text
+위 링크(또는 코드)를 통해 구매가 이루어질 경우, 작성자에게 소정의 수수료가 지급됩니다.
+```
+
+겜스고 링크와 코드는 `src/content/affiliate.ts`에서 관리합니다.

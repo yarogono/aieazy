@@ -6,6 +6,7 @@ intent: "허브"
 aliases: ["챗지피티", "쳇지피티", "chatgpt", "챗gpt", "쳇gpt"]
 updatedAt: "2026-07-12"
 summary: "ChatGPT는 질문, 글쓰기, 요약, 코딩, 번역, 아이디어 정리에 사용할 수 있는 AI 대화 도구입니다."
+affiliate: "gamsgo"
 related: ["chatgpt-price", "chatgpt-login-error", "claude-vs-chatgpt"]
 faq:
   - question: "Q1. 챗GPT 무료 버전과 유료 버전의 가장 큰 차이점은 무엇인가요?"

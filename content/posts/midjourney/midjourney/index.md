@@ -6,6 +6,7 @@ intent: "허브"
 aliases: ["미드저니", "Midjourney AI", "AI 이미지 생성", "이미지 생성 AI"]
 updatedAt: "2026-07-12"
 summary: "Midjourney는 텍스트 설명으로 이미지를 만드는 AI 이미지 생성 도구입니다."
+affiliate: "gamsgo"
 related: ["chatgpt", "gemini"]
 faq:
   - question: "Midjourney는 무료인가요?"

@@ -19,6 +19,7 @@ export type SeoPage = {
   updatedAt: string;
   summary: string;
   image?: string;
+  affiliate?: string;
   faq: FaqItem[];
   related: string[];
 };
@@ -116,6 +117,7 @@ function readPost(postFile: PostFile): Post {
     updatedAt: String(data.updatedAt ?? new Date().toISOString().slice(0, 10)),
     summary: String(data.summary ?? ""),
     image: data.image ? String(data.image) : undefined,
+    affiliate: data.affiliate ? String(data.affiliate) : undefined,
     faq: toFaq(data.faq),
     related: toStringArray(data.related),
     content,

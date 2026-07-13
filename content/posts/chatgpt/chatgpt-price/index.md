@@ -6,6 +6,7 @@ intent: "가격"
 aliases: ["챗GPT 가격", "챗지피티 가격", "chatgpt plus", "chatgpt pro"]
 updatedAt: "2026-07-12"
 summary: "ChatGPT 요금제는 사용량, 모델 접근, 팀 관리 기능에 따라 달라집니다."
+affiliate: "gamsgo"
 related: ["chatgpt", "chatgpt-login-error", "claude-vs-chatgpt"]
 faq:
   - question: "Q1. ChatGPT Plus 요금제 결제 시 표시된 $20 외에 추가로 청구되는 비용이 있나요?"

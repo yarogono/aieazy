@@ -6,6 +6,7 @@ intent: "비교"
 aliases: ["Claude ChatGPT 비교", "클로드 챗GPT 차이", "claude vs chatgpt"]
 updatedAt: "2026-07-12"
 summary: "Claude와 ChatGPT는 모두 강력한 AI 도구지만 글쓰기 스타일, 파일 처리, 코딩 보조, 생태계에서 차이가 납니다."
+affiliate: "gamsgo"
 related: ["chatgpt", "chatgpt-price", "cursor-ai-vs-windsurf"]
 faq:
   - question: "Q1. 글쓰기 업무가 중심인 블로거에게는 챗지피티와 클로드 중 어떤 AI가 더 적합할까요?"

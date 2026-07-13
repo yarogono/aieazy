@@ -6,6 +6,7 @@ intent: "허브"
 aliases: ["클로드", "Claude AI", "앤트로픽 Claude", "claude 사용법"]
 updatedAt: "2026-07-12"
 summary: "Claude는 긴 글, 문서 정리, 글쓰기, 분석 작업에 강점이 있는 AI 도구입니다."
+affiliate: "gamsgo"
 related: ["claude-vs-chatgpt", "chatgpt", "cursor-ai"]
 faq:
   - question: "Q1. 클로드 무료 버전은 하루에 질문을 몇 개까지 던질 수 있나요?"

@@ -6,6 +6,7 @@ intent: "허브"
 aliases: ["구글 Gemini", "제미나이", "구글 AI", "gemini ai"]
 updatedAt: "2026-07-12"
 summary: "Gemini는 구글이 제공하는 AI 도구로, 검색, 문서 작업, 이미지 이해, 안드로이드 환경과 함께 쓰기 좋습니다."
+affiliate: "gamsgo"
 related: ["chatgpt", "claude", "claude-vs-chatgpt"]
 faq:
   - question: "Gemini는 무료로 사용할 수 있나요?"
