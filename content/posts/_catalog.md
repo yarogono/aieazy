@@ -1,34 +1,35 @@
 # Posts Catalog
 
 이 파일은 `content/posts` 폴더를 관리하기 위한 내부 카탈로그입니다.
-실제 URL은 각 글 폴더명인 `content/posts/{slug}/index.md`의 `{slug}`로 결정됩니다.
+실제 URL은 `index.md` 바로 위 폴더명인 `{slug}`로 결정됩니다.
 
-중요: Search Console에 제출한 URL을 유지하려면 기존 글 폴더명을 바꾸지 않습니다.
+중요: Search Console에 제출한 URL을 유지하려면 기존 slug 폴더명을 바꾸지 않습니다.
+카테고리 폴더 위치는 바꿀 수 있지만, `index.md` 바로 위 폴더명은 URL이므로 유지합니다.
 
 ## URL Slug 목록
 
-| Slug | 대표 분류 | 관리 메모 |
-| --- | --- | --- |
-| `ai-email-writing` | AI 활용 | 이메일 작성, 업무 메일, 프롬프트 |
-| `ai-summary-tools` | AI 활용 | 요약, 문서, 회의록 |
-| `chatgpt` | ChatGPT | 대표 허브 글 |
-| `chatgpt-login-error` | ChatGPT | 로그인 오류 해결 |
-| `chatgpt-price` | ChatGPT | 가격, 요금제 |
-| `chatgpt-prompts` | ChatGPT | 프롬프트 작성법 |
-| `chatgpt-prompts-for-blog` | ChatGPT | 블로그 프롬프트 |
-| `chatgpt-prompts-for-office` | ChatGPT | 업무용 프롬프트 |
-| `chatgpt-prompts-for-students` | ChatGPT | 학생용 프롬프트 |
-| `claude` | Claude | Claude 기본 가이드 |
-| `claude-vs-chatgpt` | 비교 | Claude와 ChatGPT 비교 |
-| `copilot` | Copilot | Microsoft Copilot |
-| `cursor-ai` | Cursor AI | Cursor AI 기본 가이드 |
-| `cursor-ai-discount` | Cursor AI | 할인 정보 |
-| `cursor-ai-student-discount` | Cursor AI | 학생 할인 |
-| `cursor-ai-vs-windsurf` | 비교 | Cursor AI와 Windsurf 비교 |
-| `gemini` | Gemini | Gemini 기본 가이드 |
-| `midjourney` | Midjourney | 이미지 생성 |
-| `notion-ai` | Notion AI | 문서, 메모, 생산성 |
-| `perplexity` | Perplexity | AI 검색, 출처 확인 |
+| Slug | 실제 위치 | 대표 분류 | 관리 메모 |
+| --- | --- | --- | --- |
+| `ai-email-writing` | `use-cases/ai-email-writing/index.md` | AI 활용 | 이메일 작성, 업무 메일, 프롬프트 |
+| `ai-summary-tools` | `use-cases/ai-summary-tools/index.md` | AI 활용 | 요약, 문서, 회의록 |
+| `chatgpt` | `chatgpt/chatgpt/index.md` | ChatGPT | 대표 허브 글 |
+| `chatgpt-login-error` | `chatgpt/chatgpt-login-error/index.md` | ChatGPT | 로그인 오류 해결 |
+| `chatgpt-price` | `chatgpt/chatgpt-price/index.md` | ChatGPT | 가격, 요금제 |
+| `chatgpt-prompts` | `chatgpt/chatgpt-prompts/index.md` | ChatGPT | 프롬프트 작성법 |
+| `chatgpt-prompts-for-blog` | `chatgpt/chatgpt-prompts-for-blog/index.md` | ChatGPT | 블로그 프롬프트 |
+| `chatgpt-prompts-for-office` | `chatgpt/chatgpt-prompts-for-office/index.md` | ChatGPT | 업무용 프롬프트 |
+| `chatgpt-prompts-for-students` | `chatgpt/chatgpt-prompts-for-students/index.md` | ChatGPT | 학생용 프롬프트 |
+| `claude` | `claude/claude/index.md` | Claude | Claude 기본 가이드 |
+| `claude-vs-chatgpt` | `comparisons/claude-vs-chatgpt/index.md` | 비교 | Claude와 ChatGPT 비교 |
+| `copilot` | `copilot/copilot/index.md` | Copilot | Microsoft Copilot |
+| `cursor-ai` | `cursor-ai/cursor-ai/index.md` | Cursor AI | Cursor AI 기본 가이드 |
+| `cursor-ai-discount` | `cursor-ai/cursor-ai-discount/index.md` | Cursor AI | 할인 정보 |
+| `cursor-ai-student-discount` | `cursor-ai/cursor-ai-student-discount/index.md` | Cursor AI | 학생 할인 |
+| `cursor-ai-vs-windsurf` | `comparisons/cursor-ai-vs-windsurf/index.md` | 비교 | Cursor AI와 Windsurf 비교 |
+| `gemini` | `gemini/gemini/index.md` | Gemini | Gemini 기본 가이드 |
+| `midjourney` | `midjourney/midjourney/index.md` | Midjourney | 이미지 생성 |
+| `notion-ai` | `notion-ai/notion-ai/index.md` | Notion AI | 문서, 메모, 생산성 |
+| `perplexity` | `perplexity/perplexity/index.md` | Perplexity | AI 검색, 출처 확인 |
 
 ## 도구별 묶음
 
@@ -105,7 +106,7 @@
 
 ## 새 글 추가 체크리스트
 
-1. 새 폴더는 `content/posts/{new-slug}/index.md` 형식으로 만듭니다.
+1. 새 폴더는 `content/posts/{category}/{new-slug}/index.md` 형식으로 만듭니다.
 2. Search Console에 제출한 기존 slug와 겹치거나 기존 slug를 변경하지 않습니다.
 3. `src/content/tools.ts`의 적절한 `articleSlugs` 목록에 새 slug를 추가합니다.
 4. 이 카탈로그의 `URL Slug 목록`, `도구별 묶음`, `주제별 묶음`을 함께 업데이트합니다.

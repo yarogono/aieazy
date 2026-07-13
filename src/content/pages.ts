@@ -29,8 +29,53 @@ export type Post = SeoPage & {
 
 const postsDirectory = path.join(process.cwd(), "content", "posts");
 
-function getPostFile(slug: string) {
-  return path.join(postsDirectory, slug, "index.md");
+type PostFile = {
+  slug: string;
+  filePath: string;
+};
+
+function getPostSlug(filePath: string) {
+  return path.basename(path.dirname(filePath));
+}
+
+function getPostFiles(directory = postsDirectory): PostFile[] {
+  if (!fs.existsSync(directory)) {
+    return [];
+  }
+
+  return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const entryPath = path.join(directory, entry.name);
+
+    if (entry.isDirectory()) {
+      return getPostFiles(entryPath);
+    }
+
+    if (entry.isFile() && entry.name === "index.md") {
+      return [{ slug: getPostSlug(entryPath), filePath: entryPath }];
+    }
+
+    return [];
+  });
+}
+
+function assertUniqueSlugs(postFiles: PostFile[]) {
+  const slugMap = new Map<string, string[]>();
+
+  for (const postFile of postFiles) {
+    const filePaths = slugMap.get(postFile.slug) ?? [];
+    filePaths.push(postFile.filePath);
+    slugMap.set(postFile.slug, filePaths);
+  }
+
+  const duplicates = [...slugMap.entries()].filter(([, filePaths]) => filePaths.length > 1);
+
+  if (duplicates.length > 0) {
+    const message = duplicates
+      .map(([slug, filePaths]) => `${slug}: ${filePaths.map((filePath) => path.relative(postsDirectory, filePath)).join(", ")}`)
+      .join("; ");
+
+    throw new Error(`Duplicate post slugs found. Each post folder name must be unique. ${message}`);
+  }
 }
 
 function toStringArray(value: unknown): string[] {
@@ -57,13 +102,13 @@ function toFaq(value: unknown): FaqItem[] {
     .filter((item): item is FaqItem => Boolean(item?.question && item.answer));
 }
 
-function readPost(slug: string): Post {
-  const source = fs.readFileSync(getPostFile(slug), "utf8");
+function readPost(postFile: PostFile): Post {
+  const source = fs.readFileSync(postFile.filePath, "utf8");
   const { data, content } = matter(source);
 
   return {
-    slug,
-    title: String(data.title ?? slug),
+    slug: postFile.slug,
+    title: String(data.title ?? postFile.slug),
     description: String(data.description ?? ""),
     category: String(data.category ?? "AI"),
     intent: String(data.intent ?? "가이드"),
@@ -78,15 +123,10 @@ function readPost(slug: string): Post {
 }
 
 export function getAllPosts(): Post[] {
-  if (!fs.existsSync(postsDirectory)) {
-    return [];
-  }
+  const postFiles = getPostFiles();
+  assertUniqueSlugs(postFiles);
 
-  return fs
-    .readdirSync(postsDirectory, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name)
-    .filter((slug) => fs.existsSync(getPostFile(slug)))
+  return postFiles
     .map(readPost)
     .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
 }

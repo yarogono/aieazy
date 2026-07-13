@@ -1,37 +1,37 @@
 # AI 쉬움 글 작성 가이드
 
-블로그 글은 `content/posts/{slug}/index.md` 형식으로 작성합니다.
+블로그 글은 `content/posts/{category}/{slug}/index.md` 형식으로 작성합니다.
 
 예시:
 
 ```text
-content/posts/chatgpt-login-error/index.md
+content/posts/chatgpt/chatgpt-login-error/index.md
 ```
 
 ## URL 유지 규칙
 
-`{slug}` 폴더명이 실제 URL이 됩니다.
+`index.md` 바로 위의 `{slug}` 폴더명이 실제 URL이 됩니다.
 
 예를 들어 아래 파일은 `/chatgpt-login-error` URL로 노출됩니다.
 
 ```text
-content/posts/chatgpt-login-error/index.md
+content/posts/chatgpt/chatgpt-login-error/index.md
 ```
 
 Search Console에 이미 제출한 글은 폴더명을 바꾸지 않습니다.
-폴더명을 바꾸면 URL이 바뀌므로, 글을 정리할 때는 `content/posts/_catalog.md`만 업데이트합니다.
+카테고리 폴더 위치는 바꿀 수 있지만, `index.md` 바로 위의 slug 폴더명을 바꾸면 URL이 바뀝니다.
 
 ## 글 관리 카탈로그
 
 `content/posts/_catalog.md`는 내부 관리용 파일입니다.
 
 - URL에는 영향을 주지 않습니다.
-- 기존 slug를 도구별, 주제별로 정리합니다.
+- 기존 slug를 실제 폴더 위치, 도구별, 주제별로 정리합니다.
 - 새 글을 추가하면 `_catalog.md`와 `src/content/tools.ts`의 `articleSlugs`를 함께 업데이트합니다.
 
 ## 새 글 추가 순서
 
-1. `content/posts/새-글-slug/` 폴더를 만듭니다.
+1. `content/posts/카테고리/새-글-slug/` 폴더를 만듭니다.
 2. 그 안에 `index.md` 파일을 만듭니다.
 3. 아래 frontmatter를 복사해 제목, 설명, 카테고리, 관련 글을 수정합니다.
 4. 본문은 일반 마크다운으로 작성합니다.
