@@ -5,7 +5,7 @@ category: "문제 해결"
 intent: "오류 해결"
 aliases: ["챗GPT 이미지 업로드 오류", "chatgpt", "챗GPT 이미지 업로드 안 됨", "챗지피티 이미지 첨부 오류", "쳇지피티"]
 updatedAt: "2026-07-14"
-summary: "챗GPT(챗지피티)  이미지 사진 첨부(업로드)가 안되는 오류는 계정 설정 및 인공지능 모델의 제한 때문입니다.
+summary: "챗GPT(챗지피티) 이미지 사진 첨부(업로드)가 안되는 오류는 계정 설정 및 인공지능 모델의 제한 때문입니다."
 related: ["chatgpt", "chatgpt-price"]
 faq:
   - question: "Q1. 챗지피티 앱에서 카메라 아이콘이 회색으로 변해 터치가 안 돼요."
