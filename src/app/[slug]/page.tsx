@@ -86,9 +86,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function DetailPage({ params }: PageProps) {
   const { slug } = await params;
   const page = getPage(slug);
-  const postHtml = await getPostHtml(slug);
+  const post = await getPostHtml(slug);
 
-  if (!page || !postHtml) {
+  if (!page || !post) {
     notFound();
   }
 
@@ -99,6 +99,8 @@ export default async function DetailPage({ params }: PageProps) {
   const affiliate = getAffiliate(page.affiliate);
   const articleJsonLd = createArticleJsonLd(page);
   const faqJsonLd = createFaqJsonLd(page.faq);
+  const tableOfContents = post.tableOfContents;
+  const showTableOfContents = tableOfContents.length >= 3;
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
     { name: siteConfig.name, item: "/" },
     { name: page.category, item: "/" + page.slug },
@@ -147,7 +149,20 @@ export default async function DetailPage({ params }: PageProps) {
 
           {affiliate ? <AffiliateBox affiliate={affiliate} /> : null}
 
-          <div className="markdown-body" dangerouslySetInnerHTML={{ __html: postHtml }} />
+          {showTableOfContents ? (
+            <nav className="table-of-contents" aria-labelledby="table-of-contents-title">
+              <strong id="table-of-contents-title">이 글의 목차</strong>
+              <ol>
+                {tableOfContents.map((item) => (
+                  <li key={item.id} className={item.depth === 3 ? "toc-depth-3" : undefined}>
+                    <a href={"#" + item.id}>{item.text}</a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          ) : null}
+
+          <div className="markdown-body" dangerouslySetInnerHTML={{ __html: post.html }} />
           <CopyBlocks />
 
           <section className="article-section trust-note">

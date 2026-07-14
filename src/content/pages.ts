@@ -1,8 +1,10 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import type { Heading, Node, PhrasingContent, Root } from "mdast";
 import { remark } from "remark";
 import html from "remark-html";
+import type { Plugin } from "unified";
 
 export type FaqItem = {
   question: string;
@@ -26,6 +28,12 @@ export type SeoPage = {
 
 export type Post = SeoPage & {
   content: string;
+};
+
+export type TableOfContentsItem = {
+  id: string;
+  text: string;
+  depth: 2 | 3;
 };
 
 const postsDirectory = path.join(process.cwd(), "content", "posts");
@@ -196,6 +204,73 @@ export function getRelatedPages(page: SeoPage, limit = 4): SeoPage[] {
   return [...explicit, ...automatic].slice(0, limit);
 }
 
+function getNodeText(node: PhrasingContent): string {
+  if ("value" in node && typeof node.value === "string") {
+    return node.value;
+  }
+
+  if ("children" in node && Array.isArray(node.children)) {
+    return node.children.map((child) => getNodeText(child as PhrasingContent)).join("");
+  }
+
+  return "";
+}
+
+function createHeadingId(text: string, usedIds: Map<string, number>) {
+  const base =
+    text
+      .trim()
+      .toLowerCase()
+      .replace(/[\s_]+/g, "-")
+      .replace(/[^a-z0-9가-힣ㄱ-ㅎㅏ-ㅣ一-龥-]/g, "")
+      .replace(/-+/g, "-")
+      .replace(/^-|-$/g, "") || "section";
+  const count = usedIds.get(base) ?? 0;
+
+  usedIds.set(base, count + 1);
+  return count === 0 ? base : `${base}-${count + 1}`;
+}
+
+function addTableOfContents(tableOfContents: TableOfContentsItem[]): Plugin<[], Root> {
+  const usedIds = new Map<string, number>();
+
+  return () => (tree) => {
+    visitHeadings(tree, (heading) => {
+      if (heading.depth !== 2 && heading.depth !== 3) {
+        return;
+      }
+
+      const text = heading.children.map(getNodeText).join("").trim();
+
+      if (!text) {
+        return;
+      }
+
+      const id = createHeadingId(text, usedIds);
+      heading.data = {
+        ...heading.data,
+        hProperties: {
+          ...(heading.data?.hProperties as Record<string, unknown> | undefined),
+          id,
+        },
+      };
+      tableOfContents.push({ id: `user-content-${id}`, text, depth: heading.depth });
+    });
+  };
+}
+
+function visitHeadings(node: Node, callback: (heading: Heading) => void) {
+  if (node.type === "heading") {
+    callback(node as Heading);
+  }
+
+  if ("children" in node && Array.isArray(node.children)) {
+    for (const child of node.children) {
+      visitHeadings(child as Node, callback);
+    }
+  }
+}
+
 export async function getPostHtml(slug: string) {
   const page = getPage(slug);
 
@@ -203,6 +278,11 @@ export async function getPostHtml(slug: string) {
     return null;
   }
 
-  const processedContent = await remark().use(html).process(page.content);
-  return processedContent.toString();
+  const tableOfContents: TableOfContentsItem[] = [];
+  const processedContent = await remark().use(addTableOfContents(tableOfContents)).use(html).process(page.content);
+
+  return {
+    html: processedContent.toString(),
+    tableOfContents,
+  };
 }
