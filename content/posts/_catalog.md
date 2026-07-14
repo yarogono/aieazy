@@ -13,7 +13,8 @@
 | `ai-email-writing` | `use-cases/ai-email-writing/index.md` | AI 활용 | 이메일 작성, 업무 메일, 프롬프트 |
 | `ai-summary-tools` | `use-cases/ai-summary-tools/index.md` | AI 활용 | 요약, 문서, 회의록 |
 | `chatgpt` | `chatgpt/chatgpt/index.md` | ChatGPT | 대표 허브 글 |
-| `chatgpt-login-error` | `chatgpt/chatgpt-image-upload-error/index.md` | ChatGPT | 이미 업로드 오류 |
+| `chatgpt-archive` | `chatgpt/chatgpt-archive/index.md` | ChatGPT | 아카이브, 숨긴 채팅 |
+| `chatgpt-image-upload-error` | `chatgpt/chatgpt-image-upload-error/index.md` | ChatGPT | 이미지 업로드 오류 |
 | `chatgpt-login-error` | `chatgpt/chatgpt-login-error/index.md` | ChatGPT | 로그인 오류 해결 |
 | `chatgpt-price` | `chatgpt/chatgpt-price/index.md` | ChatGPT | 가격, 요금제 |
 | `chatgpt-prompts` | `chatgpt/chatgpt-prompts/index.md` | ChatGPT | 프롬프트 작성법 |
@@ -38,6 +39,7 @@
 
 - `chatgpt`
 - `chatgpt-price`
+- `chatgpt-archive`
 - `chatgpt-image-upload-error`
 - `chatgpt-login-error`
 - `claude-vs-chatgpt`

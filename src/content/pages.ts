@@ -254,7 +254,9 @@ function addTableOfContents(tableOfContents: TableOfContentsItem[]): Plugin<[], 
           id,
         },
       };
-      tableOfContents.push({ id: `user-content-${id}`, text, depth: heading.depth });
+      if (heading.depth === 2) {
+        tableOfContents.push({ id: `user-content-${id}`, text, depth: heading.depth });
+      }
     });
   };
 }
