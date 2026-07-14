@@ -5,6 +5,7 @@ import { siteConfig } from "@/content/site";
 import { getOgImageUrl } from "@/lib/seo";
 import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { adsenseConfig } from "@/content/ads";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -66,7 +67,7 @@ export default function RootLayout({
         <Script
           id="google-adsense"
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5633731930294890"
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseConfig.client}`}
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />

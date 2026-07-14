@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AdSenseUnit } from "@/components/AdSenseUnit";
 import { AffiliateBox } from "@/components/AffiliateBox";
 import { CopyBlocks } from "@/components/CopyBlocks";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
+import { adsenseConfig } from "@/content/ads";
 import { getAffiliate } from "@/content/affiliate";
 import { getPage, getPages, getPostHtml, getRelatedPages } from "@/content/pages";
 import { siteConfig } from "@/content/site";
@@ -17,6 +19,17 @@ import {
   createFaqJsonLd,
   getOgImageUrl,
 } from "@/lib/seo";
+
+function splitHtmlBeforeNthH2(html: string, headingNumber: number) {
+  const matches = [...html.matchAll(/<h2\b/gi)];
+  const target = matches[headingNumber - 1];
+
+  if (!target?.index) {
+    return [html, ""] as const;
+  }
+
+  return [html.slice(0, target.index), html.slice(target.index)] as const;
+}
 
 function shouldShowFreshness(page: { slug: string; title: string; description: string; intent: string }) {
   const text = [page.slug, page.title, page.description, page.intent].join(" ").toLowerCase();
@@ -101,6 +114,7 @@ export default async function DetailPage({ params }: PageProps) {
   const faqJsonLd = createFaqJsonLd(page.faq);
   const tableOfContents = post.tableOfContents;
   const showTableOfContents = tableOfContents.length >= 3;
+  const [htmlBeforeMiddleAd, htmlAfterMiddleAd] = splitHtmlBeforeNthH2(post.html, 3);
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
     { name: siteConfig.name, item: "/" },
     { name: page.category, item: "/" + page.slug },
@@ -151,7 +165,7 @@ export default async function DetailPage({ params }: PageProps) {
 
           {showTableOfContents ? (
             <nav className="table-of-contents" aria-labelledby="table-of-contents-title">
-              <strong id="table-of-contents-title">이 글의 목차</strong>
+              <strong id="table-of-contents-title">[목차]</strong>
               <ol>
                 {tableOfContents.map((item) => (
                   <li key={item.id} className={item.depth === 3 ? "toc-depth-3" : undefined}>
@@ -162,7 +176,15 @@ export default async function DetailPage({ params }: PageProps) {
             </nav>
           ) : null}
 
-          <div className="markdown-body" dangerouslySetInnerHTML={{ __html: post.html }} />
+          <AdSenseUnit className="ad-unit-article" slot={adsenseConfig.slots.articleTop} />
+
+          <div className="markdown-body" dangerouslySetInnerHTML={{ __html: htmlBeforeMiddleAd }} />
+          {htmlAfterMiddleAd ? (
+            <>
+              <AdSenseUnit className="ad-unit-article" slot={adsenseConfig.slots.articleMiddle} />
+              <div className="markdown-body markdown-body-continuation" dangerouslySetInnerHTML={{ __html: htmlAfterMiddleAd }} />
+            </>
+          ) : null}
           <CopyBlocks />
 
           <section className="article-section trust-note">
@@ -170,6 +192,8 @@ export default async function DetailPage({ params }: PageProps) {
             <p>이 글은 초보 사용자가 바로 확인할 수 있는 질문, 요금, 오류 해결, 사용 상황을 기준으로 정리했습니다.</p>
             <p>요금제, 정책, 기능은 변경될 수 있으므로 결제나 중요한 업무 적용 전에는 반드시 각 서비스의 공식 문서를 함께 확인해 주세요.</p>
           </section>
+
+          <AdSenseUnit className="ad-unit-article ad-unit-before-faq" slot={adsenseConfig.slots.articleBottom} />
 
           {page.faq.length > 0 ? (
             <section className="article-section">

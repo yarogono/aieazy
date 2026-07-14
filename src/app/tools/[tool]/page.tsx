@@ -1,12 +1,15 @@
+import { Fragment } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AdSenseUnit } from "@/components/AdSenseUnit";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
+import { adsenseConfig } from "@/content/ads";
 import { siteConfig } from "@/content/site";
-import { createBreadcrumbJsonLd, createCollectionPageJsonLd, getOgImageUrl } from "@/lib/seo";
 import { aiTools, getTool, getToolArticles } from "@/content/tools";
+import { createBreadcrumbJsonLd, createCollectionPageJsonLd, getOgImageUrl } from "@/lib/seo";
 
 type ToolPageProps = {
   params: Promise<{
@@ -28,24 +31,26 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
     return {};
   }
 
+  const title = `${tool.name} 가이드 모음`;
+
   return {
-    title: `${tool.name} 가이드 모음`,
+    title,
     description: tool.description,
     alternates: {
       canonical: `/tools/${tool.slug}`,
     },
     openGraph: {
-      title: `${tool.name} 가이드 모음`,
+      title,
       description: tool.description,
       type: "website",
       locale: "ko_KR",
       url: "/tools/" + tool.slug,
       siteName: siteConfig.name,
-      images: [{ url: getOgImageUrl("/tools/" + tool.slug), width: 1200, height: 630, alt: `${tool.name} 가이드 모음` }],
+      images: [{ url: getOgImageUrl("/tools/" + tool.slug), width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${tool.name} 가이드 모음`,
+      title,
       description: tool.description,
       images: [getOgImageUrl("/tools/" + tool.slug)],
     },
@@ -91,17 +96,27 @@ export default async function ToolPage({ params }: ToolPageProps) {
           </div>
           <div className="article-list">
             {articles.map((article, index) => (
-              <Link className="article-list-item" key={article.slug} href={`/${article.slug}`}>
-                <span className="guide-rank">{index + 1}</span>
-                <span className="guide-copy">
-                  <span className="guide-meta">
-                    {article.category} · {article.intent} · 업데이트 {article.updatedAt}
+              <Fragment key={article.slug}>
+                <Link className="article-list-item" href={`/${article.slug}`}>
+                  <span className="guide-rank">{index + 1}</span>
+                  <span className="guide-copy">
+                    <span className="guide-meta">
+                      {article.category} · {article.intent} · 업데이트 {article.updatedAt}
+                    </span>
+                    <strong>{article.title}</strong>
+                    <p>{article.description}</p>
                   </span>
-                  <strong>{article.title}</strong>
-                  <p>{article.description}</p>
-                </span>
-                <span className="guide-cta">보기</span>
-              </Link>
+                  <span className="guide-cta">보기</span>
+                </Link>
+                {index === 2 ? (
+                  <AdSenseUnit
+                    className="ad-unit-feed"
+                    slot={adsenseConfig.slots.feed}
+                    format="fluid"
+                    layoutKey={adsenseConfig.feedLayoutKey}
+                  />
+                ) : null}
+              </Fragment>
             ))}
           </div>
         </section>

@@ -1,7 +1,10 @@
+import { Fragment } from "react";
 import Link from "next/link";
+import { AdSenseUnit } from "@/components/AdSenseUnit";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
+import { adsenseConfig } from "@/content/ads";
 import { pages } from "@/content/pages";
 import { aiTools } from "@/content/tools";
 import { allHubs } from "@/content/topics";
@@ -91,7 +94,8 @@ export default function Home() {
           </div>
           <div className="guide-list">
             {featured.map((page, index) => (
-              <Link className="card" key={page.slug} href={"/" + page.slug}>
+              <Fragment key={page.slug}>
+                <Link className="card" href={"/" + page.slug}>
                 <span className="guide-rank">{index + 1}</span>
                 <span className="guide-copy">
                   <span className="guide-meta">
@@ -102,6 +106,15 @@ export default function Home() {
                 </span>
                 <span className="guide-cta">보기</span>
               </Link>
+                {index === 2 ? (
+                  <AdSenseUnit
+                    className="ad-unit-feed"
+                    slot={adsenseConfig.slots.feed}
+                    format="fluid"
+                    layoutKey={adsenseConfig.feedLayoutKey}
+                  />
+                ) : null}
+              </Fragment>
             ))}
           </div>
         </section>
