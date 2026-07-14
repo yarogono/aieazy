@@ -17,6 +17,7 @@
 | `chatgpt-image-upload-error` | `chatgpt/chatgpt-image-upload-error/index.md` | ChatGPT | 이미지 업로드 오류 |
 | `chatgpt-login-error` | `chatgpt/chatgpt-login-error/index.md` | ChatGPT | 로그인 오류 해결 |
 | `chatgpt-price` | `chatgpt/chatgpt-price/index.md` | ChatGPT | 가격, 요금제 |
+| `chatgpt-foreign-payment-fee-cheap-subscription` | `chatgpt/chatgpt-foreign-payment-fee-cheap-subscription/index.md` | ChatGPT | 해외 결제 수수료, 저렴한 구독 |
 | `chatgpt-refund-cancel-subscription` | `chatgpt/chatgpt-refund-cancel-subscription/index.md` | ChatGPT | 환불, 구독 해지, 고객센터 |
 | `chatgpt-prompts` | `chatgpt/chatgpt-prompts/index.md` | ChatGPT | 프롬프트 작성법 |
 | `chatgpt-prompts-for-blog` | `chatgpt/chatgpt-prompts-for-blog/index.md` | ChatGPT | 블로그 프롬프트 |
@@ -40,6 +41,7 @@
 
 - `chatgpt`
 - `chatgpt-price`
+- `chatgpt-foreign-payment-fee-cheap-subscription`
 - `chatgpt-refund-cancel-subscription`
 - `chatgpt-archive`
 - `chatgpt-image-upload-error`
@@ -98,6 +100,7 @@
 ### 가격과 할인
 
 - `chatgpt-price`
+- `chatgpt-foreign-payment-fee-cheap-subscription`
 - `chatgpt-refund-cancel-subscription`
 - `cursor-ai-discount`
 - `cursor-ai-student-discount`
