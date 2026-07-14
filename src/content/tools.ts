@@ -20,6 +20,7 @@ export const aiTools: AiTool[] = [
     articleSlugs: [
       "chatgpt",
       "chatgpt-price",
+      "chatgpt-image-upload-error",
       "chatgpt-login-error",
       "claude-vs-chatgpt",
       "chatgpt-prompts",
