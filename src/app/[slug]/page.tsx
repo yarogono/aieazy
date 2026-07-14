@@ -130,12 +130,6 @@ export default async function DetailPage({ params }: PageProps) {
       <main className="article-shell">
         <div className="article-layout">
           <article className="article article-main">
-          <nav className="breadcrumbs" aria-label="Breadcrumb">
-            <Link href="/">홈</Link>
-            <span>/</span>
-            <span>{page.category}</span>
-          </nav>
-
           <header className="article-hero-card">
             <div className="article-type">
               <span>{page.category.slice(0, 1)}</span>

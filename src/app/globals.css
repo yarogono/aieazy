@@ -1036,10 +1036,36 @@ p {
 
 .article-main .markdown-body h2,
 .article-main .markdown-body h3 {
-  margin-top: 54px;
-  margin-bottom: 18px;
   color: var(--foreground);
-  text-align: center;
+  text-align: left;
+}
+
+.article-main .markdown-body h2 {
+  margin-top: 58px;
+  margin-bottom: 16px;
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1.28;
+}
+
+.article-main .markdown-body h3 {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  margin-top: 34px;
+  margin-bottom: 12px;
+  font-size: 21px;
+  font-weight: 900;
+  line-height: 1.42;
+}
+
+.article-main .markdown-body h3::before {
+  content: "✓";
+  flex: 0 0 auto;
+  color: #7357c8;
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1.35;
 }
 
 .article-main .markdown-body p,
