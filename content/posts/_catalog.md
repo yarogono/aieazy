@@ -19,10 +19,13 @@
 | `chatgpt-price` | `chatgpt/chatgpt-price/index.md` | ChatGPT | 가격, 요금제 |
 | `chatgpt-foreign-payment-fee-cheap-subscription` | `chatgpt/chatgpt-foreign-payment-fee-cheap-subscription/index.md` | ChatGPT | 해외 결제 수수료, 저렴한 구독 |
 | `chatgpt-refund-cancel-subscription` | `chatgpt/chatgpt-refund-cancel-subscription/index.md` | ChatGPT | 환불, 구독 해지, 고객센터 |
+| `chatgpt-reset-meaning-chat-history` | `chatgpt/chatgpt-reset-meaning-chat-history/index.md` | ChatGPT | 초기화, 대화내역, 메모리 |
 | `chatgpt-prompts` | `chatgpt/chatgpt-prompts/index.md` | ChatGPT | 프롬프트 작성법 |
 | `chatgpt-prompts-for-blog` | `chatgpt/chatgpt-prompts-for-blog/index.md` | ChatGPT | 블로그 프롬프트 |
 | `chatgpt-prompts-for-office` | `chatgpt/chatgpt-prompts-for-office/index.md` | ChatGPT | 업무용 프롬프트 |
 | `chatgpt-prompts-for-students` | `chatgpt/chatgpt-prompts-for-students/index.md` | ChatGPT | 학생용 프롬프트 |
+| `chatgpt-assignment-plagiarism-detection` | `chatgpt/chatgpt-assignment-plagiarism-detection/index.md` | ChatGPT | 과제, 표절검사, AI 탐지 |
+| `chatgpt-fake-paper-citation-check` | `chatgpt/chatgpt-fake-paper-citation-check/index.md` | ChatGPT | 논문 출처, 가짜 논문, 참고문헌 |
 | `claude` | `claude/claude/index.md` | Claude | Claude 기본 가이드 |
 | `claude-vs-chatgpt` | `comparisons/claude-vs-chatgpt/index.md` | 비교 | Claude와 ChatGPT 비교 |
 | `copilot` | `copilot/copilot/index.md` | Copilot | Microsoft Copilot |
@@ -43,6 +46,7 @@
 - `chatgpt-price`
 - `chatgpt-foreign-payment-fee-cheap-subscription`
 - `chatgpt-refund-cancel-subscription`
+- `chatgpt-reset-meaning-chat-history`
 - `chatgpt-archive`
 - `chatgpt-image-upload-error`
 - `chatgpt-login-error`
@@ -51,6 +55,8 @@
 - `chatgpt-prompts-for-blog`
 - `chatgpt-prompts-for-office`
 - `chatgpt-prompts-for-students`
+- `chatgpt-assignment-plagiarism-detection`
+- `chatgpt-fake-paper-citation-check`
 - `ai-email-writing`
 - `ai-summary-tools`
 
@@ -94,6 +100,8 @@
 - `chatgpt-prompts-for-blog`
 - `chatgpt-prompts-for-office`
 - `chatgpt-prompts-for-students`
+- `chatgpt-assignment-plagiarism-detection`
+- `chatgpt-fake-paper-citation-check`
 - `ai-email-writing`
 - `ai-summary-tools`
 
@@ -109,6 +117,7 @@
 
 - `chatgpt-image-upload-error`
 - `chatgpt-login-error`
+- `chatgpt-reset-meaning-chat-history`
 
 ### 비교
 
