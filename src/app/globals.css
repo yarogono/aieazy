@@ -864,6 +864,63 @@ p {
   text-align: center;
 }
 
+.ai-answer-brief {
+  max-width: 720px;
+  display: grid;
+  gap: 16px;
+  margin: 0 auto 38px;
+  padding: 24px 28px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfaf7;
+}
+
+.ai-answer-brief h2 {
+  font-size: 26px;
+  line-height: 1.25;
+}
+
+.ai-answer-brief p,
+.ai-answer-brief li {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.ai-answer-brief ul {
+  display: grid;
+  gap: 6px;
+  margin-left: 18px;
+}
+
+.ai-answer-brief strong {
+  color: var(--foreground);
+}
+
+.ai-entity-list,
+.ai-source-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ai-entity-list span,
+.ai-source-list a {
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--foreground);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.ai-source-list a {
+  color: var(--accent-strong);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .affiliate-box {
   max-width: 680px;
   display: grid;
@@ -1442,6 +1499,7 @@ p {
   }
 
   .article-lead,
+  .ai-answer-brief,
   .affiliate-box,
   .article-main .ad-unit-article,
   .table-of-contents,
@@ -1454,6 +1512,15 @@ p {
     margin: 34px auto 30px;
     font-size: 19px;
     text-align: left;
+  }
+
+  .ai-answer-brief {
+    margin-bottom: 30px;
+    padding: 20px 18px;
+  }
+
+  .ai-answer-brief h2 {
+    font-size: 22px;
   }
 
   .affiliate-box {

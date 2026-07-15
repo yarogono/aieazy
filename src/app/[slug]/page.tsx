@@ -49,6 +49,69 @@ function shouldShowFreshness(page: { slug: string; title: string; description: s
   ].some((term) => text.includes(term));
 }
 
+const officialSourceCatalog = [
+  {
+    terms: ["chatgpt", "openai", "\uCC57GPT", "\uCC57\uC9C0\uD53C\uD2F0"],
+    name: "OpenAI Help Center",
+    url: "https://help.openai.com/",
+  },
+  {
+    terms: ["gemini", "\uC81C\uBBF8\uB098\uC774"],
+    name: "Google Gemini Help",
+    url: "https://support.google.com/gemini/",
+  },
+  {
+    terms: ["claude", "\uD074\uB85C\uB4DC"],
+    name: "Anthropic Claude Support",
+    url: "https://support.anthropic.com/",
+  },
+  {
+    terms: ["copilot", "\uCF54\uD30C\uC77C\uB7FF"],
+    name: "Microsoft Copilot Support",
+    url: "https://support.microsoft.com/copilot",
+  },
+  {
+    terms: ["perplexity", "\uD37C\uD50C\uB809\uC2DC\uD2F0"],
+    name: "Perplexity Help Center",
+    url: "https://www.perplexity.ai/help",
+  },
+  {
+    terms: ["cursor", "cursor ai", "\uCEE4\uC11C"],
+    name: "Cursor Docs",
+    url: "https://docs.cursor.com/",
+  },
+  {
+    terms: ["windsurf", "\uC708\uB4DC\uC11C\uD504"],
+    name: "Windsurf Docs",
+    url: "https://docs.windsurf.com/",
+  },
+  {
+    terms: ["midjourney", "\uBBF8\uB4DC\uC800\uB2C8"],
+    name: "Midjourney Docs",
+    url: "https://docs.midjourney.com/",
+  },
+  {
+    terms: ["notion", "notion ai", "\uB178\uC158"],
+    name: "Notion AI Help",
+    url: "https://www.notion.com/help/category/notion-ai",
+  },
+];
+
+function getAiCitationSources(page: { slug: string; title: string; description: string; category: string; aliases: string[] }) {
+  const pageText = [page.slug, page.title, page.description, page.category, ...page.aliases].join(" ").toLowerCase();
+  const sources = officialSourceCatalog.filter((source) =>
+    source.terms.some((term) => pageText.includes(term.toLowerCase())),
+  );
+
+  return sources.length > 0 ? sources.slice(0, 4) : officialSourceCatalog.slice(0, 3);
+}
+
+function getAiEntities(page: { category: string; intent: string; aliases: string[] }, hubLabels: string[]) {
+  return [...new Set([siteConfig.name, siteConfig.alternateName, page.category, page.intent, ...page.aliases, ...hubLabels])]
+    .filter(Boolean)
+    .slice(0, 10);
+}
+
 type PageProps = {
   params: Promise<{
     slug: string;
@@ -109,6 +172,8 @@ export default async function DetailPage({ params }: PageProps) {
   const topicHubs = getHubsForArticle(page);
   const showFreshness = shouldShowFreshness(page);
   const heroTags = [...page.aliases, ...topicHubs.map((hub) => hub.label)].slice(0, 10);
+  const aiEntities = getAiEntities(page, topicHubs.map((hub) => hub.label));
+  const citationSources = getAiCitationSources(page);
   const affiliate = getAffiliate(page.affiliate);
   const articleJsonLd = createArticleJsonLd(page);
   const faqJsonLd = createFaqJsonLd(page.faq);
@@ -154,6 +219,35 @@ export default async function DetailPage({ params }: PageProps) {
           </header>
 
           <p className="article-lead">{page.summary || page.description}</p>
+
+          <section className="ai-answer-brief" aria-labelledby="ai-answer-brief-title">
+            <p className="eyebrow">AI citation brief</p>
+            <h2 id="ai-answer-brief-title">핵심 요약</h2>
+            <p>{page.summary || page.description}</p>
+            <ul>
+              <li>
+                <strong>주제:</strong> {page.category} / {page.intent}
+              </li>
+              <li>
+                <strong>업데이트:</strong> {page.updatedAt}
+              </li>
+              <li>
+                <strong>검증 방식:</strong> 공식 도움말, 가격/정책 페이지, 실제 사용 흐름을 우선 확인합니다.
+              </li>
+            </ul>
+            <div className="ai-entity-list" aria-label="주요 엔티티">
+              {aiEntities.map((entity) => (
+                <span key={entity}>{entity}</span>
+              ))}
+            </div>
+            <div className="ai-source-list" aria-label="검증 출처">
+              {citationSources.map((source) => (
+                <a key={source.url} href={source.url} target="_blank" rel="noopener noreferrer">
+                  {source.name}
+                </a>
+              ))}
+            </div>
+          </section>
 
           {affiliate ? <AffiliateBox affiliate={affiliate} /> : null}
 
