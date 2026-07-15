@@ -3,6 +3,7 @@ import path from "node:path";
 import matter from "gray-matter";
 import type { Heading, Node, PhrasingContent, Root } from "mdast";
 import { remark } from "remark";
+import gfm from "remark-gfm";
 import html from "remark-html";
 import type { Plugin } from "unified";
 
@@ -281,7 +282,7 @@ export async function getPostHtml(slug: string) {
   }
 
   const tableOfContents: TableOfContentsItem[] = [];
-  const processedContent = await remark().use(addTableOfContents(tableOfContents)).use(html).process(page.content);
+  const processedContent = await remark().use(gfm).use(addTableOfContents(tableOfContents)).use(html).process(page.content);
 
   return {
     html: processedContent.toString(),
