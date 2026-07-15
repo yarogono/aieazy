@@ -20,8 +20,10 @@
 | `chatgpt-account-sharing` | `chatgpt/chatgpt-account-sharing/index.md` | ChatGPT | 계정 공유, 인원, 링크 |
 | `chatgpt-foreign-payment-fee-cheap-subscription` | `chatgpt/chatgpt-foreign-payment-fee-cheap-subscription/index.md` | ChatGPT | 해외 결제 수수료, 저렴한 구독 |
 | `chatgpt-refund-cancel-subscription` | `chatgpt/chatgpt-refund-cancel-subscription/index.md` | ChatGPT | 환불, 구독 해지, 고객센터 |
+| `chatgpt-delete-chat-history` | `chatgpt/chatgpt-delete-chat-history/index.md` | ChatGPT | 대화 삭제, 전체 삭제, 복구, 아카이브 |
 | `chatgpt-reset-meaning-chat-history` | `chatgpt/chatgpt-reset-meaning-chat-history/index.md` | ChatGPT | 초기화, 대화내역, 메모리 |
 | `chatgpt-prompts` | `chatgpt/chatgpt-prompts/index.md` | ChatGPT | 프롬프트 작성법 |
+| `chatgpt-voice-conversation` | `chatgpt/chatgpt-voice-conversation/index.md` | ChatGPT | 음성대화, 음성모드, 영어회화, 번역 |
 | `chatgpt-prompts-for-blog` | `chatgpt/chatgpt-prompts-for-blog/index.md` | ChatGPT | 블로그 프롬프트 |
 | `chatgpt-prompts-for-office` | `chatgpt/chatgpt-prompts-for-office/index.md` | ChatGPT | 업무용 프롬프트 |
 | `chatgpt-prompts-for-students` | `chatgpt/chatgpt-prompts-for-students/index.md` | ChatGPT | 학생용 프롬프트 |
@@ -48,8 +50,10 @@
 - `chatgpt-account-sharing`
 - `chatgpt-foreign-payment-fee-cheap-subscription`
 - `chatgpt-refund-cancel-subscription`
+- `chatgpt-delete-chat-history`
 - `chatgpt-reset-meaning-chat-history`
 - `chatgpt-archive`
+- `chatgpt-voice-conversation`
 - `chatgpt-image-upload-error`
 - `chatgpt-login-error`
 - `claude-vs-chatgpt`
@@ -120,7 +124,12 @@
 
 - `chatgpt-image-upload-error`
 - `chatgpt-login-error`
+- `chatgpt-delete-chat-history`
 - `chatgpt-reset-meaning-chat-history`
+
+### 음성대화와 활용
+
+- `chatgpt-voice-conversation`
 
 ### 비교
 

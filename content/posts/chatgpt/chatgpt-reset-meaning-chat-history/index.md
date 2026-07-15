@@ -6,7 +6,7 @@ intent: "문제 해결"
 aliases: ["챗지피티 초기화", "챗GPT 초기화", "ChatGPT 초기화", "챗지피티 대화내역 사라짐", "ChatGPT 대화 기록", "챗지피티 메모리 초기화"]
 updatedAt: "2026-07-15"
 summary: "챗지피티 초기화는 대화내역 삭제, 현재 대화 맥락 끊김, 메모리 초기화, 새 채팅 시작을 모두 가리킬 수 있어 먼저 어떤 초기화인지 구분해야 합니다."
-related: ["chatgpt-archive", "chatgpt-price", "chatgpt-prompts"]
+related: ["chatgpt-delete-chat-history", "chatgpt-archive", "chatgpt-price", "chatgpt-prompts"]
 faq:
   - question: "Q1. 챗지피티 초기화가 뜨면 대화내역이 전부 사라지나요?"
     answer: "A1. 항상 그런 것은 아닙니다. 대화 목록이 그대로 보인다면 전체 기록 삭제가 아니라 현재 대화 맥락이 끊겼거나 새 채팅으로 시작된 상태일 가능성이 큽니다."

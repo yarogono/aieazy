@@ -6,7 +6,7 @@ intent: "문제 해결"
 aliases: ["챗지피티 아카이브", "ChatGPT 아카이브", "챗GPT 숨긴 채팅", "챗지피티 대화 복구", "ChatGPT archived chats"]
 updatedAt: "2026-07-14"
 summary: "ChatGPT 아카이브는 대화를 삭제하지 않고 목록에서 숨겨두는 기능입니다. 설정에서 아카이브된 채팅을 확인하고 다시 열 수 있습니다."
-related: ["chatgpt", "chatgpt-login-error", "chatgpt-image-upload-error"]
+related: ["chatgpt-delete-chat-history", "chatgpt", "chatgpt-login-error", "chatgpt-image-upload-error"]
 faq:
   - question: "Q1. 챗지피티 아카이브는 삭제와 같은 건가요?"
     answer: "A1. 아닙니다. 아카이브는 대화를 목록에서 숨기는 기능이고, 삭제는 대화를 지우는 기능입니다."
