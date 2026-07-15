@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { adsenseConfig } from "@/content/ads";
 
 declare global {
@@ -18,10 +18,41 @@ type AdSenseUnitProps = {
 };
 
 export function AdSenseUnit({ slot, className, format = "auto", layout, layoutKey }: AdSenseUnitProps) {
+  const containerRef = useRef<HTMLElement>(null);
   const pushedRef = useRef(false);
+  const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
-    if (!slot || pushedRef.current) {
+    if (!slot) {
+      return;
+    }
+
+    const container = containerRef.current;
+
+    if (!container || !("IntersectionObserver" in window)) {
+      setShouldLoad(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "600px 0px" },
+    );
+
+    observer.observe(container);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [slot]);
+
+  useEffect(() => {
+    if (!slot || !shouldLoad || pushedRef.current) {
       return;
     }
 
@@ -32,25 +63,27 @@ export function AdSenseUnit({ slot, className, format = "auto", layout, layoutKe
     } catch {
       pushedRef.current = false;
     }
-  }, [slot]);
+  }, [slot, shouldLoad]);
 
   if (!adsenseConfig.client || !slot) {
     return null;
   }
 
   return (
-    <aside className={["ad-unit", className].filter(Boolean).join(" ")} aria-label="Advertisements">
+    <aside ref={containerRef} className={["ad-unit", className].filter(Boolean).join(" ")} aria-label="Advertisements">
       <span className="ad-unit-label">Advertisements</span>
-      <ins
-        className="adsbygoogle"
-        style={{ display: "block" }}
-        data-ad-client={adsenseConfig.client}
-        data-ad-slot={slot}
-        data-ad-format={format}
-        data-ad-layout={layout}
-        data-ad-layout-key={layoutKey || undefined}
-        data-full-width-responsive="true"
-      />
+      {shouldLoad ? (
+        <ins
+          className="adsbygoogle"
+          style={{ display: "block" }}
+          data-ad-client={adsenseConfig.client}
+          data-ad-slot={slot}
+          data-ad-format={format}
+          data-ad-layout={layout}
+          data-ad-layout-key={layoutKey || undefined}
+          data-full-width-responsive="true"
+        />
+      ) : null}
     </aside>
   );
 }
