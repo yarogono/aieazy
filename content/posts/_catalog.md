@@ -19,6 +19,7 @@
 | `chatgpt-price` | `chatgpt/chatgpt-price/index.md` | ChatGPT | 가격, 요금제 |
 | `chatgpt-account-sharing` | `chatgpt/chatgpt-account-sharing/index.md` | ChatGPT | 계정 공유, 인원, 링크 |
 | `chatgpt-foreign-payment-fee-cheap-subscription` | `chatgpt/chatgpt-foreign-payment-fee-cheap-subscription/index.md` | ChatGPT | 해외 결제 수수료, 저렴한 구독 |
+| `chatgpt-payment-cancel` | `chatgpt/chatgpt-payment-cancel/index.md` | ChatGPT | 결제 취소, 구독 안 보임, 카카오페이 |
 | `chatgpt-refund-cancel-subscription` | `chatgpt/chatgpt-refund-cancel-subscription/index.md` | ChatGPT | 환불, 구독 해지, 고객센터 |
 | `chatgpt-delete-chat-history` | `chatgpt/chatgpt-delete-chat-history/index.md` | ChatGPT | 대화 삭제, 전체 삭제, 복구, 아카이브 |
 | `chatgpt-reset-meaning-chat-history` | `chatgpt/chatgpt-reset-meaning-chat-history/index.md` | ChatGPT | 초기화, 대화내역, 메모리 |
@@ -49,6 +50,7 @@
 - `chatgpt-price`
 - `chatgpt-account-sharing`
 - `chatgpt-foreign-payment-fee-cheap-subscription`
+- `chatgpt-payment-cancel`
 - `chatgpt-refund-cancel-subscription`
 - `chatgpt-delete-chat-history`
 - `chatgpt-reset-meaning-chat-history`
@@ -116,6 +118,7 @@
 - `chatgpt-price`
 - `chatgpt-account-sharing`
 - `chatgpt-foreign-payment-fee-cheap-subscription`
+- `chatgpt-payment-cancel`
 - `chatgpt-refund-cancel-subscription`
 - `cursor-ai-discount`
 - `cursor-ai-student-discount`

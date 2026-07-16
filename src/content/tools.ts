@@ -22,6 +22,7 @@ export const aiTools: AiTool[] = [
       "chatgpt-price",
       "chatgpt-account-sharing",
       "chatgpt-foreign-payment-fee-cheap-subscription",
+      "chatgpt-payment-cancel",
       "chatgpt-refund-cancel-subscription",
       "chatgpt-delete-chat-history",
       "chatgpt-reset-meaning-chat-history",

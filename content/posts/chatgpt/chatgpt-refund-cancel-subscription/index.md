@@ -6,7 +6,7 @@ intent: "문제 해결"
 aliases: ["챗지피티 환불", "ChatGPT 환불", "챗GPT 구독 해지", "ChatGPT 요금제 해지", "챗지피티 고객센터", "OpenAI 환불 문의"]
 updatedAt: "2026-07-14"
 summary: "ChatGPT 구독은 결제한 경로에 따라 해지와 환불 방법이 달라집니다. 웹 결제는 ChatGPT 설정의 Billing에서 해지하고, 환불은 Help Center 채팅으로 문의하는 방식이 기본입니다."
-related: ["chatgpt-price", "chatgpt", "chatgpt-login-error"]
+related: ["chatgpt-payment-cancel", "chatgpt-price", "chatgpt", "chatgpt-login-error"]
 faq:
   - question: "Q1. 챗지피티 구독을 해지하면 바로 사용이 중단되나요?"
     answer: "A1. 보통 다음 결제일 이후에 해지가 적용되며, 그 전까지는 남은 기간 동안 유료 기능을 사용할 수 있습니다."
