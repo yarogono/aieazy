@@ -4,34 +4,39 @@ type OgCardProps = {
   label?: string;
 };
 
-const highlightRules = [
+type HighlightRule = {
+  terms: string[];
+  lines: (title: string) => string[];
+};
+
+const highlightRules: HighlightRule[] = [
   {
     terms: ["프롬프트 모음"],
-    lines: (title: string) => ["챗지피티", "프롬프트 모음", title.includes("10가지") ? "10가지" : "복사 예시"],
+    lines: () => ["챗지피티", "프롬프트 모음"],
   },
   {
     terms: ["아카이브"],
-    lines: () => ["챗지피티", "아카이브", "보는 법"],
+    lines: () => ["챗지피티", "아카이브"],
   },
   {
     terms: ["로그인", "오류"],
-    lines: () => ["챗GPT", "로그인 오류", "해결법"],
+    lines: () => ["챗GPT", "로그인 오류"],
   },
   {
     terms: ["가격", "요금제"],
-    lines: () => ["ChatGPT", "가격 비교", "요금제"],
+    lines: () => ["ChatGPT", "가격 비교"],
   },
   {
     terms: ["환불", "구독"],
-    lines: () => ["챗지피티", "환불 구독", "해지 방법"],
+    lines: () => ["챗지피티", "환불 방법"],
   },
   {
     terms: ["이미지", "업로드"],
-    lines: () => ["챗지피티", "이미지 업로드", "오류 해결"],
+    lines: () => ["이미지 업로드", "오류 해결"],
   },
   {
     terms: ["음성대화"],
-    lines: () => ["챗지피티", "음성대화", "사용법"],
+    lines: () => ["챗지피티", "음성대화"],
   },
 ];
 
@@ -58,16 +63,16 @@ function chunkTitle(title: string) {
       current = next;
     }
 
-    if (chunks.length === 2) {
+    if (chunks.length === 1) {
       break;
     }
   }
 
-  if (current && chunks.length < 3) {
+  if (current && chunks.length < 2) {
     chunks.push(current);
   }
 
-  return chunks.slice(0, 3);
+  return chunks.slice(0, 2);
 }
 
 function getTitleLines(title: string) {
@@ -84,11 +89,11 @@ function getTitleLines(title: string) {
 function getAccent(label: string) {
   if (label.includes("ChatGPT")) {
     return {
-      background: "#ff7a00",
+      background: "#f97316",
       border: "#111827",
-      chip: "#0f172a",
+      chip: "#111827",
       title: "#111827",
-      note: "#fff7ed",
+      note: "#fde68a",
     };
   }
 
@@ -98,7 +103,7 @@ function getAccent(label: string) {
       border: "#111827",
       chip: "#111827",
       title: "#111827",
-      note: "#fef2f2",
+      note: "#fee2e2",
     };
   }
 
@@ -107,14 +112,14 @@ function getAccent(label: string) {
     border: "#111827",
     chip: "#111827",
     title: "#111827",
-    note: "#eff6ff",
+    note: "#bfdbfe",
   };
 }
 
 export function OgCard({ title, description, label = "AI Guide" }: OgCardProps) {
   const titleLines = getTitleLines(title);
   const accent = getAccent(label);
-  const note = description ? cleanTitle(description).slice(0, 28) : "AI 쉬움";
+  const note = cleanTitle(description || label).slice(0, 18);
 
   return (
     <div
@@ -124,7 +129,7 @@ export function OgCard({ title, description, label = "AI Guide" }: OgCardProps) 
         display: "flex",
         background: accent.background,
         color: accent.title,
-        padding: "54px",
+        padding: "64px",
         boxSizing: "border-box",
         fontFamily: "Arial, sans-serif",
       }}
@@ -136,11 +141,10 @@ export function OgCard({ title, description, label = "AI Guide" }: OgCardProps) 
           display: "flex",
           flexDirection: "column",
           background: "#ffffff",
-          border: `18px solid ${accent.border}`,
-          borderRadius: "42px",
-          padding: "52px 58px 44px",
+          border: `14px solid ${accent.border}`,
+          borderRadius: "32px",
+          padding: "54px 62px",
           boxSizing: "border-box",
-          boxShadow: "22px 24px 0 rgba(0, 0, 0, 0.22)",
         }}
       >
         <div
@@ -159,8 +163,8 @@ export function OgCard({ title, description, label = "AI Guide" }: OgCardProps) 
               background: accent.chip,
               color: "#ffffff",
               borderRadius: "999px",
-              padding: "14px 30px",
-              fontSize: "34px",
+              padding: "12px 26px",
+              fontSize: "28px",
               fontWeight: 900,
               lineHeight: 1,
             }}
@@ -172,13 +176,13 @@ export function OgCard({ title, description, label = "AI Guide" }: OgCardProps) 
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              width: "92px",
-              height: "92px",
-              background: "#fde047",
-              border: `10px solid ${accent.border}`,
-              borderRadius: "26px",
+              width: "74px",
+              height: "74px",
+              background: accent.note,
+              border: `7px solid ${accent.border}`,
+              borderRadius: "18px",
               color: "#111827",
-              fontSize: "42px",
+              fontSize: "32px",
               fontWeight: 900,
             }}
           >
@@ -192,8 +196,9 @@ export function OgCard({ title, description, label = "AI Guide" }: OgCardProps) 
             flexDirection: "column",
             justifyContent: "center",
             flex: 1,
-            gap: "10px",
-            marginTop: "20px",
+            gap: "18px",
+            marginTop: "8px",
+            overflow: "hidden",
           }}
         >
           {titleLines.map((line) => (
@@ -201,12 +206,11 @@ export function OgCard({ title, description, label = "AI Guide" }: OgCardProps) 
               key={line}
               style={{
                 display: "flex",
-                fontSize: line.length > 8 ? "86px" : "104px",
+                fontSize: line.length > 8 ? "82px" : "96px",
                 fontWeight: 900,
-                lineHeight: 0.98,
+                lineHeight: 1,
                 letterSpacing: 0,
                 color: accent.title,
-                textShadow: "0 8px 0 #fde047",
                 whiteSpace: "nowrap",
               }}
             >
@@ -219,17 +223,16 @@ export function OgCard({ title, description, label = "AI Guide" }: OgCardProps) 
           <div
             style={{
               display: "flex",
-              flex: 1,
               alignItems: "center",
-              background: accent.note,
-              border: `8px solid ${accent.border}`,
-              borderRadius: "22px",
-              padding: "16px 22px",
-              fontSize: "30px",
+              background: "#ffffff",
+              borderTop: `6px solid ${accent.border}`,
+              padding: "18px 0 0",
+              fontSize: "28px",
               fontWeight: 800,
               lineHeight: 1.12,
               overflow: "hidden",
               whiteSpace: "nowrap",
+              color: "#374151",
             }}
           >
             {note}
