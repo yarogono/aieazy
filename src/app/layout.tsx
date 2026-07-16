@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
 import { siteConfig } from "@/content/site";
 import { getOgImageUrl } from "@/lib/seo";
 import "./globals.css";
@@ -66,16 +65,16 @@ export default function RootLayout({
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
         <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
         <link rel="preconnect" href="https://fundingchoicesmessages.google.com" />
+        {adsenseConfig.client ? (
+          <script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseConfig.client}`}
+            crossOrigin="anonymous"
+          />
+        ) : null}
       </head>
       <body suppressHydrationWarning>
         {children}
-        <Script
-          id="google-adsense"
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseConfig.client}`}
-          crossOrigin="anonymous"
-          strategy="lazyOnload"
-        />
       </body>
       <GoogleAnalytics gaId="G-GG8TZHG4GT" />
     </html>

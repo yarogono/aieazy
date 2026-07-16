@@ -8,7 +8,7 @@ export function AffiliateBox({ affiliate }: AffiliateBoxProps) {
   return (
     <aside className="affiliate-box" aria-label={`${affiliate.brand} 제휴 안내`}>
       <div>
-        <span>{affiliate.brand}</span>
+        <span>{affiliate.brand} 제휴 안내</span>
         <h2>{affiliate.title}</h2>
         <p>{affiliate.description}</p>
         {affiliate.code ? (

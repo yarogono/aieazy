@@ -7,11 +7,11 @@ const contentSecurityPolicy = [
   "frame-ancestors 'self'",
   "object-src 'none'",
   "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com https://*.googlesyndication.com https://*.google.com",
-  "style-src 'self' 'unsafe-inline'",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "img-src 'self' data: blob: https:",
-  "font-src 'self' data:",
-  "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.googlesyndication.com https://*.google.com",
-  "frame-src 'self' https://*.google.com https://*.googlesyndication.com",
+  "font-src 'self' data: https://fonts.gstatic.com",
+  "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.googlesyndication.com https://*.google.com https://*.g.doubleclick.net https://*.doubleclick.net https://*.adtrafficquality.google https://adtrafficquality.google",
+  "frame-src 'self' https://*.google.com https://*.googlesyndication.com https://*.g.doubleclick.net https://*.doubleclick.net",
   "upgrade-insecure-requests",
 ].join("; ");
 
