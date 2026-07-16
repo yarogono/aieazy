@@ -249,34 +249,6 @@ export default async function DetailPage({ params }: PageProps) {
             </div>
           </section>
 
-          {relatedPages.length > 0 || topicHubs.length > 0 ? (
-            <section className="reader-path" aria-labelledby="reader-path-title">
-              <div>
-                <p className="eyebrow">다음에 함께 보면 좋은 글</p>
-                <h2 id="reader-path-title">필요한 답만 빠르게 이어서 확인하세요</h2>
-              </div>
-              {relatedPages.length > 0 ? (
-                <div className="reader-path-grid">
-                  {relatedPages.slice(0, 3).map((relatedPage) => (
-                    <Link key={relatedPage.slug} href={"/" + relatedPage.slug}>
-                      <span>{relatedPage.intent}</span>
-                      <strong>{relatedPage.title}</strong>
-                    </Link>
-                  ))}
-                </div>
-              ) : null}
-              {topicHubs.length > 0 ? (
-                <div className="reader-hub-links" aria-label="관련 주제 모음">
-                  {topicHubs.slice(0, 3).map((hub) => (
-                    <Link key={hub.path} href={hub.path}>
-                      {hub.label} 모음
-                    </Link>
-                  ))}
-                </div>
-              ) : null}
-            </section>
-          ) : null}
-
           {showTableOfContents ? (
             <nav className="table-of-contents" aria-labelledby="table-of-contents-title">
               <strong id="table-of-contents-title">목차</strong>
@@ -322,6 +294,34 @@ export default async function DetailPage({ params }: PageProps) {
                   </div>
                 ))}
               </div>
+            </section>
+          ) : null}
+
+          {relatedPages.length > 0 || topicHubs.length > 0 ? (
+            <section className="reader-path reader-path-bottom" aria-labelledby="reader-path-title">
+              <div>
+                <p className="eyebrow">다음에 함께 보면 좋은 글</p>
+                <h2 id="reader-path-title">글을 다 읽었다면 이어서 확인하세요</h2>
+              </div>
+              {relatedPages.length > 0 ? (
+                <div className="reader-path-grid">
+                  {relatedPages.slice(0, 3).map((relatedPage) => (
+                    <Link key={relatedPage.slug} href={"/" + relatedPage.slug}>
+                      <span>{relatedPage.intent}</span>
+                      <strong>{relatedPage.title}</strong>
+                    </Link>
+                  ))}
+                </div>
+              ) : null}
+              {topicHubs.length > 0 ? (
+                <div className="reader-hub-links" aria-label="관련 주제 모음">
+                  {topicHubs.slice(0, 3).map((hub) => (
+                    <Link key={hub.path} href={hub.path}>
+                      {hub.label} 모음
+                    </Link>
+                  ))}
+                </div>
+              ) : null}
             </section>
           ) : null}
           </article>
