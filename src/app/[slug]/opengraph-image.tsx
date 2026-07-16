@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { notFound } from "next/navigation";
 import { getPage, getPages } from "@/content/pages";
-import { OgCard } from "@/lib/ogImage";
+import { getOgFonts, OgCard } from "@/lib/ogImage";
 import { ogImageSize } from "@/lib/seo";
 
 export const alt = "AI \uC26C\uC6C0 article image";
@@ -22,6 +22,6 @@ export default async function Image({ params }: { params: Promise<{ slug: string
 
   return new ImageResponse(
     <OgCard title={page.title} description={page.description} label={page.category} />,
-    size,
+    { ...size, fonts: await getOgFonts() },
   );
 }

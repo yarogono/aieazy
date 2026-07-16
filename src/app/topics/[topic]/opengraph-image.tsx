@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { notFound } from "next/navigation";
 import { getTopicHub, topicHubs } from "@/content/topics";
-import { OgCard } from "@/lib/ogImage";
+import { getOgFonts, OgCard } from "@/lib/ogImage";
 import { ogImageSize } from "@/lib/seo";
 
 export const alt = "AI 쉬움 topic image";
@@ -20,5 +20,8 @@ export default async function Image({ params }: { params: Promise<{ topic: strin
     notFound();
   }
 
-  return new ImageResponse(<OgCard title={hub.title} description={hub.description} label={hub.label} />, size);
+  return new ImageResponse(<OgCard title={hub.title} description={hub.description} label={hub.label} />, {
+    ...size,
+    fonts: await getOgFonts(),
+  });
 }
