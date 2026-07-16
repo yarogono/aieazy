@@ -103,7 +103,7 @@ function getAiCitationSources(page: { slug: string; title: string; description: 
     source.terms.some((term) => pageText.includes(term.toLowerCase())),
   );
 
-  return sources.length > 0 ? sources.slice(0, 4) : officialSourceCatalog.slice(0, 3);
+  return sources.slice(0, 4);
 }
 
 function getAiEntities(page: { category: string; intent: string; aliases: string[] }, hubLabels: string[]) {
@@ -218,10 +218,7 @@ export default async function DetailPage({ params }: PageProps) {
             ) : null}
           </header>
 
-          <p className="article-lead">{page.summary || page.description}</p>
-
           <section className="ai-answer-brief" aria-labelledby="ai-answer-brief-title">
-            <p className="eyebrow">AI citation brief</p>
             <h2 id="ai-answer-brief-title">핵심 요약</h2>
             <p>{page.summary || page.description}</p>
             <ul>
@@ -232,7 +229,7 @@ export default async function DetailPage({ params }: PageProps) {
                 <strong>업데이트:</strong> {page.updatedAt}
               </li>
               <li>
-                <strong>검증 방식:</strong> 공식 도움말, 가격/정책 페이지, 실제 사용 흐름을 우선 확인합니다.
+                <strong>확인한 곳:</strong> 공식 도움말, 가격/정책 페이지, 실제 사용 흐름을 함께 봤습니다.
               </li>
             </ul>
             <div className="ai-entity-list" aria-label="주요 엔티티">
@@ -240,13 +237,15 @@ export default async function DetailPage({ params }: PageProps) {
                 <span key={entity}>{entity}</span>
               ))}
             </div>
-            <div className="ai-source-list" aria-label="검증 출처">
-              {citationSources.map((source) => (
-                <a key={source.url} href={source.url} target="_blank" rel="noopener noreferrer">
-                  {source.name}
-                </a>
-              ))}
-            </div>
+            {citationSources.length > 0 ? (
+              <div className="ai-source-list" aria-label="확인한 출처">
+                {citationSources.map((source) => (
+                  <a key={source.url} href={source.url} target="_blank" rel="noopener noreferrer">
+                    {source.name}
+                  </a>
+                ))}
+              </div>
+            ) : null}
           </section>
 
           {showTableOfContents ? (
@@ -342,7 +341,8 @@ export default async function DetailPage({ params }: PageProps) {
             ) : null}
 
             <section className="sidebar-card">
-              <strong>AI 도구 차트</strong>
+              <strong>많이 찾는 AI 순위</strong>
+              <p>사용법, 가격, 오류 해결 글을 많이 찾는 도구부터 확인해 보세요.</p>
               <div className="sidebar-link-list">
                 {aiTools.slice(0, 6).map((tool, index) => (
                   <Link key={tool.slug} href={"/tools/" + tool.slug}>

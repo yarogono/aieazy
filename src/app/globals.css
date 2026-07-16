@@ -887,22 +887,11 @@ p {
   font-weight: 800;
 }
 
-.article-lead {
-  max-width: 720px;
-  margin: 54px auto 44px;
-  color: var(--warm);
-  font-size: 23px;
-  font-style: italic;
-  font-weight: 900;
-  line-height: 1.55;
-  text-align: center;
-}
-
 .ai-answer-brief {
   max-width: 720px;
   display: grid;
   gap: 16px;
-  margin: 0 auto 38px;
+  margin: 44px auto 38px;
   padding: 24px 28px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -1622,7 +1611,6 @@ ins.adsbygoogle[data-ad-status="unfilled"] {
     border-left: 0;
   }
 
-  .article-lead,
   .ai-answer-brief,
   .reader-path,
   .affiliate-box,
@@ -1633,13 +1621,8 @@ ins.adsbygoogle[data-ad-status="unfilled"] {
     max-width: calc(100% - 36px);
   }
 
-  .article-lead {
-    margin: 34px auto 30px;
-    font-size: 19px;
-    text-align: left;
-  }
-
   .ai-answer-brief {
+    margin-top: 30px;
     margin-bottom: 30px;
     padding: 20px 18px;
   }
