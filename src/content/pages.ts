@@ -15,6 +15,7 @@ export type FaqItem = {
 export type SeoPage = {
   slug: string;
   title: string;
+  searchTitle?: string;
   description: string;
   category: string;
   intent: string;
@@ -119,6 +120,7 @@ function readPost(postFile: PostFile): Post {
   return {
     slug: postFile.slug,
     title: String(data.title ?? postFile.slug),
+    searchTitle: data.searchTitle ? String(data.searchTitle) : undefined,
     description: String(data.description ?? ""),
     category: String(data.category ?? "AI"),
     intent: String(data.intent ?? "가이드"),

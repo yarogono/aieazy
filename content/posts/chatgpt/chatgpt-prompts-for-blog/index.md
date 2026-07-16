@@ -1,6 +1,7 @@
 ---
-title: "블로그 글쓰기 ai 자동화 챗지피티 프롬프트 모음"
-description: "블로그 글쓰기 ai 자동화, 주제 찾기, 제목 만들기, 목차 구성, 본문 초안, SEO 점검에 사용할 수 있는 ChatGPT 프롬프트를 정리했습니다."
+title: "블로그 프롬프트 모음, 복붙용 ChatGPT 예시 5단계"
+searchTitle: "블로그 프롬프트 모음, 복붙용 ChatGPT 예시 5단계"
+description: "주제 발굴부터 제목, 목차, 본문 초안, SEO 점검까지 바로 복사해 쓰는 블로그 글쓰기 ChatGPT 프롬프트를 단계별로 정리했습니다."
 category: "ChatGPT"
 intent: "활용"
 aliases: ["블로그 프롬프트", "블로그 글쓰기", "블로그 글쓰기 ai", "자동화", "chatgpt 블로그 글쓰기", "챗gpt 블로그", "AI 블로그 글쓰기"]
