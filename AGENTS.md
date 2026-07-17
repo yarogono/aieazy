@@ -24,6 +24,12 @@ Useful starting skills for this project:
 - Article quality: `copywriting`, `copy-editing`, `marketing-psychology`
 - Site growth: `marketing-plan`, `marketing-ideas`, `free-tools`, `marketing-loops`
 
+## Project Domain
+
+- The live domain for this project is `https://aieazy.yaro.co.kr`.
+- Do not use `https://aieazy.com` as the production domain for validation, analytics checks, canonical URLs, sitemap checks, or examples unless the user explicitly says the domain changed.
+- Production builds and local production-like checks should use `NEXT_PUBLIC_SITE_URL=https://aieazy.yaro.co.kr`.
+
 ## Content Writing Structure
 
 When creating or editing article content, use a front-loaded, search-intent-first structure.
