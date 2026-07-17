@@ -5,6 +5,7 @@ import { getOgImageUrl } from "@/lib/seo";
 import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { adsenseConfig } from "@/content/ads";
+import WebAnalytics from "@/components/WebAnalytics";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -62,6 +63,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        {/* 정적이고 빠른 애드센스 사전 연결 및 스크립트 head에 배치*/}
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
         <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
         <link rel="preconnect" href="https://fundingchoicesmessages.google.com" />
@@ -74,8 +76,12 @@ export default function RootLayout({
         ) : null}
       </head>
       <body suppressHydrationWarning>
-        {children}
+        {/* 클라이언트 사이드에서 작동할 분석 툴 컴포넌트 배치 */}
+        <WebAnalytics/>
         <GoogleAnalytics gaId="G-GG8TZHG4GT" />
+
+        {/* 실제 화면을 구성하는 핵심 레이아웃 뼈대 */}
+        {children}
       </body>
     </html>
   );
