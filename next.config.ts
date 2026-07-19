@@ -1,16 +1,16 @@
 import type { NextConfig } from "next";
 
 const contentSecurityPolicy = [
-  "default-src 'self'",
+  "default-src 'self' https://www.clarity.ms https://*.clarity.ms https://c.bing.com",
   "base-uri 'self'",
   "form-action 'self'",
   "frame-ancestors 'self'",
   "object-src 'none'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com https://*.googlesyndication.com https://*.google.com",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com https://*.googlesyndication.com https://*.google.com https://www.clarity.ms https://*.clarity.ms https://c.bing.com",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data: https://fonts.gstatic.com",
-  "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.googlesyndication.com https://*.google.com https://*.g.doubleclick.net https://*.doubleclick.net https://*.adtrafficquality.google https://adtrafficquality.google",
+  "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.googlesyndication.com https://*.google.com https://*.g.doubleclick.net https://*.doubleclick.net https://*.adtrafficquality.google https://adtrafficquality.google https://www.clarity.ms https://*.clarity.ms https://c.bing.com",
   "frame-src 'self' https://*.google.com https://*.googlesyndication.com https://*.g.doubleclick.net https://*.doubleclick.net",
   "upgrade-insecure-requests",
 ].join("; ");
