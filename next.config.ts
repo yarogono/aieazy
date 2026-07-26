@@ -38,6 +38,10 @@ const nextConfig: NextConfig = {
             value: contentSecurityPolicy,
           },
           {
+            key: "Permissions-Policy",
+            value: "unload=()",
+          },
+          {
             key: "Referrer-Policy",
             value: "origin-when-cross-origin",
           },
