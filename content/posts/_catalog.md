@@ -15,8 +15,10 @@
 | `chatgpt` | `chatgpt/chatgpt/index.md` | ChatGPT | 대표 허브 글 |
 | `chatgpt-archive` | `chatgpt/chatgpt-archive/index.md` | ChatGPT | 아카이브, 숨긴 채팅 |
 | `chatgpt-image-upload-error` | `chatgpt/chatgpt-image-upload-error/index.md` | ChatGPT | 이미지 업로드 오류 |
+| `chatgpt-image-generation-error` | `chatgpt/chatgpt-image-generation-error/index.md` | ChatGPT | 이미지 생성 오류 |
 | `chatgpt-login-error` | `chatgpt/chatgpt-login-error/index.md` | ChatGPT | 로그인 오류 해결 |
 | `chatgpt-price` | `chatgpt/chatgpt-price/index.md` | ChatGPT | 가격, 요금제 |
+| `chatgpt-vs-gemini-paid-price-comparison-discount` | `comparisons/chatgpt-vs-gemini-paid-price-comparison-discount/index.md` | 비교 | ChatGPT와 Gemini 유료 가격 비교 |
 | `chatgpt-account-sharing` | `chatgpt/chatgpt-account-sharing/index.md` | ChatGPT | 계정 공유, 인원, 링크 |
 | `chatgpt-foreign-payment-fee-cheap-subscription` | `chatgpt/chatgpt-foreign-payment-fee-cheap-subscription/index.md` | ChatGPT | 해외 결제 수수료, 저렴한 구독 |
 | `chatgpt-payment-cancel` | `chatgpt/chatgpt-payment-cancel/index.md` | ChatGPT | 결제 취소, 구독 안 보임, 카카오페이 |
@@ -25,13 +27,16 @@
 | `chatgpt-reset-meaning-chat-history` | `chatgpt/chatgpt-reset-meaning-chat-history/index.md` | ChatGPT | 초기화, 대화내역, 메모리 |
 | `chatgpt-prompts` | `chatgpt/chatgpt-prompts/index.md` | ChatGPT | 프롬프트 작성법 |
 | `chatgpt-voice-conversation` | `chatgpt/chatgpt-voice-conversation/index.md` | ChatGPT | 음성대화, 음성모드, 영어회화, 번역 |
+| `chatgpt-saju-free-prompts` | `chatgpt/chatgpt-saju-free-prompts/index.md` | ChatGPT | 사주 무료 프롬프트 |
 | `chatgpt-prompts-for-blog` | `chatgpt/chatgpt-prompts-for-blog/index.md` | ChatGPT | 블로그 프롬프트 |
 | `chatgpt-prompts-for-office` | `chatgpt/chatgpt-prompts-for-office/index.md` | ChatGPT | 업무용 프롬프트 |
 | `chatgpt-prompts-for-students` | `chatgpt/chatgpt-prompts-for-students/index.md` | ChatGPT | 학생용 프롬프트 |
 | `chatgpt-assignment-plagiarism-detection` | `chatgpt/chatgpt-assignment-plagiarism-detection/index.md` | ChatGPT | 과제, 표절검사, AI 탐지 |
 | `chatgpt-fake-paper-citation-check` | `chatgpt/chatgpt-fake-paper-citation-check/index.md` | ChatGPT | 논문 출처, 가짜 논문, 참고문헌 |
+| `chatgpt-beginner-guide-free-tips` | `chatgpt/chatgpt-beginner-guide-free-tips/index.md` | ChatGPT | 입문자 무료 사용 가이드 |
 | `claude` | `claude/claude/index.md` | Claude | Claude 기본 가이드 |
 | `claude-vs-chatgpt` | `comparisons/claude-vs-chatgpt/index.md` | 비교 | Claude와 ChatGPT 비교 |
+| `chatgpt-vs-gemini-school-assignment` | `comparisons/chatgpt-vs-gemini-school-assignment/index.md` | 비교 | 학교 과제용 ChatGPT와 Gemini 비교 |
 | `copilot` | `copilot/copilot/index.md` | Copilot | Microsoft Copilot |
 | `cursor-ai` | `cursor-ai/cursor-ai/index.md` | Cursor AI | Cursor AI 기본 가이드 |
 | `cursor-ai-discount` | `cursor-ai/cursor-ai-discount/index.md` | Cursor AI | 할인 정보 |
@@ -48,6 +53,7 @@
 
 - `chatgpt`
 - `chatgpt-price`
+- `chatgpt-vs-gemini-paid-price-comparison-discount`
 - `chatgpt-account-sharing`
 - `chatgpt-foreign-payment-fee-cheap-subscription`
 - `chatgpt-payment-cancel`
@@ -57,20 +63,26 @@
 - `chatgpt-archive`
 - `chatgpt-voice-conversation`
 - `chatgpt-image-upload-error`
+- `chatgpt-image-generation-error`
 - `chatgpt-login-error`
 - `claude-vs-chatgpt`
+- `chatgpt-vs-gemini-school-assignment`
 - `chatgpt-prompts`
+- `chatgpt-saju-free-prompts`
 - `chatgpt-prompts-for-blog`
 - `chatgpt-prompts-for-office`
 - `chatgpt-prompts-for-students`
 - `chatgpt-assignment-plagiarism-detection`
 - `chatgpt-fake-paper-citation-check`
+- `chatgpt-beginner-guide-free-tips`
 - `ai-email-writing`
 - `ai-summary-tools`
 
 ### Gemini
 
 - `gemini`
+- `chatgpt-vs-gemini-school-assignment`
+- `chatgpt-vs-gemini-paid-price-comparison-discount`
 
 ### Claude
 
@@ -105,6 +117,7 @@
 ### 프롬프트
 
 - `chatgpt-prompts`
+- `chatgpt-saju-free-prompts`
 - `chatgpt-prompts-for-blog`
 - `chatgpt-prompts-for-office`
 - `chatgpt-prompts-for-students`
@@ -116,6 +129,7 @@
 ### 가격과 할인
 
 - `chatgpt-price`
+- `chatgpt-vs-gemini-paid-price-comparison-discount`
 - `chatgpt-account-sharing`
 - `chatgpt-foreign-payment-fee-cheap-subscription`
 - `chatgpt-payment-cancel`
@@ -126,6 +140,7 @@
 ### 오류 해결
 
 - `chatgpt-image-upload-error`
+- `chatgpt-image-generation-error`
 - `chatgpt-login-error`
 - `chatgpt-delete-chat-history`
 - `chatgpt-reset-meaning-chat-history`
@@ -137,6 +152,8 @@
 ### 비교
 
 - `claude-vs-chatgpt`
+- `chatgpt-vs-gemini-school-assignment`
+- `chatgpt-vs-gemini-paid-price-comparison-discount`
 - `cursor-ai-vs-windsurf`
 
 ## 새 글 추가 체크리스트
