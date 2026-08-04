@@ -34,6 +34,8 @@ Useful starting skills for this project:
 
 When creating or editing article content, use a front-loaded, search-intent-first structure.
 
+Before drafting or editing Korean blog articles, also read and follow `content/guide/human-blog-tone-prompt.md`. That guide is the project rule for removing AI-sounding phrasing, adding mobile-friendly markdown line breaks, and writing affiliate CTAs with clearer click intent.
+
 The title usually promises several core keywords or outcomes, such as `사용법`, `가격`, `비교`, `안됨`, `해결`, `환불`, `취소`, `복구`, `프롬프트`, `설정`, `영어회화`, or `번역`. The first visible section must answer those title keywords immediately.
 
 Required structure for articles:

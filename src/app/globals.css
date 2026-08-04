@@ -947,12 +947,28 @@ p {
 .affiliate-box {
   max-width: 680px;
   display: grid;
-  gap: 14px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px 22px;
   margin: 34px auto;
-  padding: 22px 24px;
+  padding: 22px 24px 18px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fbfaf7;
+}
+
+.affiliate-box-compact {
+  margin-top: 20px;
+  margin-bottom: 26px;
+  background: #ffffff;
+  border-color: color-mix(in srgb, var(--accent-strong) 30%, var(--line));
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.08);
+}
+
+.affiliate-box-mid {
+  margin-top: 28px;
+  margin-bottom: 30px;
+  background: #f6fbf8;
 }
 
 .affiliate-box span {
@@ -973,10 +989,17 @@ p {
   line-height: 1.25;
 }
 
+.affiliate-box-compact h2,
+.affiliate-box-mid h2 {
+  font-size: 22px;
+}
+
 .affiliate-box p {
+  max-width: 520px;
+  margin: 0;
   color: var(--muted);
   font-size: 15px;
-  line-height: 1.7;
+  line-height: 1.65;
 }
 
 .affiliate-code {
@@ -994,11 +1017,12 @@ p {
   align-items: center;
   justify-content: center;
   width: fit-content;
-  padding: 0 18px;
+  padding: 0 20px;
   border-radius: 999px;
   background: var(--foreground);
   color: #ffffff;
   font-weight: 900;
+  white-space: nowrap;
 }
 
 .affiliate-box a:hover,
@@ -1008,6 +1032,7 @@ p {
 }
 
 .affiliate-disclosure {
+  grid-column: 1 / -1;
   padding-top: 12px;
   border-top: 1px solid var(--line);
   font-size: 13px !important;
@@ -1645,8 +1670,19 @@ ins.adsbygoogle[data-ad-status="unfilled"] {
   }
 
   .affiliate-box {
+    grid-template-columns: 1fr;
+    align-items: stretch;
     margin-bottom: 34px;
     padding: 20px;
+  }
+
+  .affiliate-box p {
+    max-width: none;
+  }
+
+  .affiliate-action,
+  .affiliate-box a {
+    width: 100%;
   }
 
   .table-of-contents {

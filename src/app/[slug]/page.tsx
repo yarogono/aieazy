@@ -175,6 +175,13 @@ export default async function DetailPage({ params }: PageProps) {
   const aiEntities = getAiEntities(page, topicHubs.map((hub) => hub.label));
   const citationSources = getAiCitationSources(page);
   const affiliate = getAffiliate(page.affiliate);
+  const affiliateCtaSubject = page.category.includes("Cursor")
+    ? "AI 코딩 도구"
+    : page.category.includes("Claude")
+      ? "Claude"
+      : page.category.includes("Gemini")
+        ? "Gemini"
+        : "AI 구독";
   const articleJsonLd = createArticleJsonLd(page);
   const faqJsonLd = createFaqJsonLd(page.faq);
   const tableOfContents = post.tableOfContents;
@@ -248,6 +255,17 @@ export default async function DetailPage({ params }: PageProps) {
             ) : null}
           </section>
 
+          {affiliate ? (
+            <AffiliateBox
+              affiliate={affiliate}
+              variant="compact"
+              eyebrow="월 구독료 아끼기"
+              title={`${affiliateCtaSubject}, 정가로 결제하기 전에 확인하세요`}
+              description={"정식 가격이 부담된다면 할인 구독 가격도 같이 비교해보세요.\n한 달만 써볼 예정이라면 특히 차이가 큽니다."}
+              buttonLabel="지금 할인받기"
+            />
+          ) : null}
+
           {showTableOfContents ? (
             <nav className="table-of-contents" aria-labelledby="table-of-contents-title">
               <strong id="table-of-contents-title">목차</strong>
@@ -264,6 +282,16 @@ export default async function DetailPage({ params }: PageProps) {
           <AdSenseUnit className="ad-unit-article" slot={adsenseConfig.slots.articleTop} />
 
           <div className="markdown-body" dangerouslySetInnerHTML={{ __html: htmlBeforeMiddleAd }} />
+          {affiliate ? (
+            <AffiliateBox
+              affiliate={affiliate}
+              variant="mid"
+              eyebrow="가격 비교 끝났다면"
+              title="더 저렴하게 쓰는 방법도 확인해보세요"
+              description={"정식 결제가 가장 깔끔하지만, 구독료를 줄이는 방법도 있습니다.\n결제 전 계정을 쓰는 방식과 환불 규칙만 꼭 같이 보세요."}
+              buttonLabel="할인 가격 비교하기"
+            />
+          ) : null}
           {htmlAfterMiddleAd ? (
             <>
               <AdSenseUnit className="ad-unit-article" slot={adsenseConfig.slots.articleMiddle} />
@@ -272,12 +300,20 @@ export default async function DetailPage({ params }: PageProps) {
           ) : null}
           <CopyBlocks />
 
-          {affiliate ? <AffiliateBox affiliate={affiliate} /> : null}
+          {affiliate ? (
+            <AffiliateBox
+              affiliate={affiliate}
+              eyebrow="결제 전 마지막 체크"
+              title="이번 달 구독료, 더 낮출 수 있는지 확인하세요"
+              description={"AI 구독은 매달 빠져나가는 비용입니다.\n지금 결제하기 전에 할인 적용 가격을 한 번 더 비교해보세요."}
+              buttonLabel="지금 구매하기"
+            />
+          ) : null}
 
           <section className="article-section trust-note">
-            <h2>작성과 검수 기준</h2>
-            <p>이 글은 초보 사용자가 바로 확인할 수 있는 질문, 요금, 오류 해결, 사용 상황을 기준으로 정리했습니다.</p>
-            <p>요금제, 정책, 기능은 변경될 수 있으므로 결제나 중요한 업무 적용 전에는 반드시 각 서비스의 공식 문서를 함께 확인해 주세요.</p>
+            <h2>이 글을 확인한 방식</h2>
+            <p>이 글은 초보 사용자가 바로 궁금해하는 질문, 가격, 오류 해결, 실제 사용 상황을 중심으로 정리했습니다.</p>
+            <p>가격과 기능은 바뀔 수 있으니 결제 전에는 각 서비스의 정식 안내도 함께 확인해 주세요.</p>
           </section>
 
           <AdSenseUnit className="ad-unit-article ad-unit-before-faq" slot={adsenseConfig.slots.articleBottom} />
