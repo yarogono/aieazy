@@ -10,8 +10,12 @@ type AffiliateCopyButtonProps = {
 
 async function copyText(value: string) {
   if (navigator.clipboard?.writeText) {
-    await navigator.clipboard.writeText(value);
-    return;
+    try {
+      await navigator.clipboard.writeText(value);
+      return;
+    } catch {
+      // 일부 모바일 브라우저에서는 Clipboard API가 거부될 수 있어 아래 방식으로 재시도합니다.
+    }
   }
 
   const textarea = document.createElement("textarea");
@@ -42,6 +46,7 @@ export function AffiliateCopyButton({ href, code, label = "할인 쿠폰 링크 
   }, []);
 
   async function handleClick() {
+    setIsCopied(false);
     window.open(href, "_blank", "noopener,noreferrer");
 
     try {

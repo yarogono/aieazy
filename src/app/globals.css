@@ -56,15 +56,6 @@ main {
   margin: 0 auto;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-}
-
-main > .deal-section {
-  order: -1;
-}
-
 .site-header-wrap {
   padding-top: 8px;
 }
@@ -1935,6 +1926,225 @@ ins.adsbygoogle[data-ad-status="unfilled"] {
   .deal-card-actions .deal-coupon-button { min-width: 128px; padding-inline: 10px; }
 }
 
+/* Homepage and discount pages stay inside a comfortable reading width. */
+main,
+.site-header-wrap,
+.site-footer {
+  width: min(1080px, calc(100% - 32px));
+}
+
+.deal-hero,
+.deal-section,
+.section {
+  min-width: 0;
+}
+
+@media (max-width: 760px) {
+  main,
+  .site-header-wrap,
+  .site-footer {
+    width: min(100% - 24px, 720px);
+  }
+
+  .deal-hero {
+    padding: 38px 0 30px;
+  }
+
+  .deal-hero h1 {
+    font-size: clamp(36px, 11vw, 52px);
+    line-height: 1.1;
+  }
+
+  .deal-hero-copy > p:not(.eyebrow) {
+    max-width: 100%;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .deal-hero-visual {
+    max-width: 420px;
+    margin-inline: auto;
+  }
+
+  .deal-section {
+    padding: 38px 0 46px;
+  }
+
+  .deal-grid {
+    width: 100%;
+  }
+
+  .deal-card {
+    width: 100%;
+  }
+}
+
+.copy-success-toast {
+  border-color: #df5b4f;
+  animation: copy-toast-in 180ms ease-out;
+}
+
+@keyframes copy-toast-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 560px) {
+  .copy-success-toast {
+    right: 12px;
+    bottom: 16px;
+    left: 12px;
+    max-width: none;
+  }
+}
+
+/* Mobile-first homepage layout. Keep the first screen focused and prevent wide controls. */
+@media (max-width: 760px) {
+  .site-header-wrap {
+    width: calc(100% - 24px);
+    padding-top: 4px;
+  }
+
+  .site-header-top {
+    min-height: 54px;
+  }
+
+  .brand {
+    font-size: 24px;
+  }
+
+  .site-header-nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    min-height: auto;
+    overflow: visible;
+    border-radius: 12px;
+    background: var(--surface);
+  }
+
+  .site-header-nav a {
+    justify-content: center;
+    min-width: 0;
+    min-height: 44px;
+    padding: 0 6px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    font-size: 13px;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .site-header-nav a:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .site-header-nav a:last-child {
+    grid-column: 1 / -1;
+    border-right: 0;
+    border-bottom: 0;
+  }
+
+  .deal-hero {
+    min-height: auto;
+    margin-top: 16px;
+    padding: 28px 20px 24px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--surface);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  }
+
+  .deal-hero::before,
+  .deal-hero-visual {
+    display: none;
+  }
+
+  .deal-hero h1 {
+    font-size: clamp(34px, 10vw, 48px);
+  }
+
+  .deal-hero-copy > p:not(.eyebrow) {
+    margin-top: 16px;
+    font-size: 16px;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 22px;
+  }
+
+  .hero-actions .button {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .deal-trust-row {
+    gap: 8px 12px;
+    margin-top: 20px;
+    font-size: 12px;
+  }
+
+  .deal-section {
+    padding-top: 34px;
+  }
+
+  .deal-heading > p {
+    max-width: none !important;
+    font-size: 14px !important;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 560px) {
+  .deal-card {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 13px;
+    align-items: center;
+    min-height: 0;
+    padding: 15px;
+  }
+
+  .deal-card-top {
+    grid-column: 1 / -1;
+  }
+
+  .deal-card-actions {
+    grid-column: 1 / -1;
+    width: 100%;
+    padding: 0;
+  }
+
+  .deal-card-actions .deal-coupon-button {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* Keep homepage information in a single vertical reading flow at every width. */
+.deal-heading {
+  display: block;
+}
+
+.deal-heading > p {
+  max-width: 720px !important;
+  margin-top: 14px;
+  text-align: left !important;
+  line-height: 1.6;
+}
+
+.section.split {
+  display: block;
+}
+
+.section.split .check-list {
+  max-width: 760px;
+  margin-top: 24px;
+}
+
 .deal-card-actions .deal-coupon-button {
   min-width: 190px;
   min-height: 52px;
@@ -1958,5 +2168,177 @@ ins.adsbygoogle[data-ad-status="unfilled"] {
     min-height: 48px;
     padding-inline: 14px;
     font-size: 14px;
+  }
+}
+
+.gamsgo-page {
+  width: min(820px, calc(100% - 32px));
+  margin-inline: auto;
+}
+
+.gamsgo-page article { min-width: 0; }
+.gamsgo-hero { padding: 64px 0 34px; }
+.gamsgo-hero h1 { max-width: 720px; margin-top: 12px; font-size: clamp(38px, 6vw, 68px); line-height: 1.08; letter-spacing: -0.055em; }
+.gamsgo-hero h1 em { color: var(--accent-strong); font-style: normal; }
+.gamsgo-hero > p:last-child { max-width: 680px; margin-top: 22px; color: var(--muted); font-size: 18px; line-height: 1.75; }
+.gamsgo-code-card { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 25px 28px; border: 1px solid #f1c46a; border-radius: 18px; background: linear-gradient(135deg, #fff8e8, #fffdf8); box-shadow: 0 12px 28px rgba(224, 125, 0, 0.1); }
+.gamsgo-code-card h2 { margin-top: 6px; font-size: 26px; }
+.gamsgo-code-card p:last-child { max-width: 500px; margin-top: 8px; color: var(--muted); font-size: 14px; line-height: 1.6; }
+.gamsgo-code-action { display: flex; flex: 0 0 auto; align-items: center; gap: 10px; }
+.gamsgo-code-action code { display: inline-flex; min-height: 52px; align-items: center; padding: 0 16px; border: 1px dashed var(--accent-strong); border-radius: 10px; background: #fff; color: var(--accent-strong); font-size: 20px; font-weight: 900; letter-spacing: 0.08em; }
+.gamsgo-toc { margin-top: 28px; padding: 22px 24px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+.gamsgo-toc strong { font-size: 17px; }
+.gamsgo-toc ol { display: grid; gap: 8px; margin-top: 14px; padding-left: 22px; color: var(--muted); }
+.gamsgo-toc a:hover { color: var(--accent-strong); text-decoration: underline; text-underline-offset: 3px; }
+.gamsgo-content { padding: 52px 0 0; scroll-margin-top: 24px; }
+.gamsgo-content h2 { margin-top: 8px; font-size: 32px; }
+.gamsgo-content > p:not(.eyebrow) { margin-top: 16px; color: var(--muted); line-height: 1.8; }
+.gamsgo-steps { display: grid; gap: 10px; margin-top: 20px; padding: 0; list-style: none; counter-reset: gamsgo-step; }
+.gamsgo-steps li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 4px 12px; align-items: center; padding: 16px 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); counter-increment: gamsgo-step; }
+.gamsgo-steps li::before { content: counter(gamsgo-step); grid-row: span 2; display: grid; width: 30px; height: 30px; place-items: center; border-radius: 50%; background: var(--accent); font-weight: 900; }
+.gamsgo-steps span { color: var(--muted); font-size: 14px; }
+.gamsgo-checklist { display: grid; gap: 10px; margin-top: 20px; padding: 0; list-style: none; }
+.gamsgo-checklist li { position: relative; padding: 15px 18px 15px 42px; border-radius: 10px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); }
+.gamsgo-checklist li::before { content: "✓"; position: absolute; left: 17px; color: var(--green); font-weight: 900; }
+.gamsgo-related-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
+.gamsgo-related-grid a { display: flex; justify-content: space-between; gap: 12px; padding: 17px 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); font-weight: 800; }
+.gamsgo-related-grid a:hover { border-color: var(--accent-strong); color: var(--accent-strong); }
+.gamsgo-faq { padding-bottom: 72px; }
+
+@media (max-width: 760px) {
+  .gamsgo-page { width: 100%; }
+  .gamsgo-hero { padding: 40px 0 26px; }
+  .gamsgo-hero h1 { font-size: clamp(35px, 11vw, 52px); }
+  .gamsgo-hero > p:last-child { font-size: 16px; }
+  .gamsgo-code-card { display: block; padding: 20px; }
+  .gamsgo-code-action { display: grid; grid-template-columns: 1fr; margin-top: 18px; }
+.gamsgo-code-action code, .gamsgo-code-action .deal-coupon-button { width: 100%; justify-content: center; }
+  .gamsgo-related-grid { grid-template-columns: 1fr; }
+}
+
+.gamsgo-ai-links-section {
+  padding-top: 46px;
+}
+
+.gamsgo-ai-links-section .section-heading {
+  margin-bottom: 20px;
+}
+
+.gamsgo-ai-links {
+  display: grid;
+  gap: 12px;
+}
+
+.gamsgo-ai-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-width: 0;
+  padding: 15px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.04);
+}
+
+.gamsgo-ai-logo {
+  flex: 0 0 48px;
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 14px;
+  background: #7562d9;
+  color: #fff !important;
+  font-size: 20px !important;
+  font-weight: 900 !important;
+}
+
+.gamsgo-ai-link:nth-child(2n) .gamsgo-ai-logo { background: #d87837; }
+.gamsgo-ai-link:nth-child(3n) .gamsgo-ai-logo { background: #4977d0; }
+.gamsgo-ai-link:nth-child(4n) .gamsgo-ai-logo { background: #2c9b91; }
+.gamsgo-ai-link:nth-child(5n) .gamsgo-ai-logo { background: #d45b86; }
+
+.gamsgo-ai-link > div {
+  display: grid;
+  min-width: 0;
+  gap: 4px;
+}
+
+.gamsgo-ai-link span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.gamsgo-ai-link strong {
+  overflow-wrap: anywhere;
+  font-size: 18px;
+}
+
+.gamsgo-ai-link .deal-coupon-button {
+  flex: 0 0 auto;
+  min-width: 172px;
+  min-height: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 12px;
+  background: #df5b4f;
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(223, 91, 79, 0.24);
+  font-size: 14px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.gamsgo-ai-link .deal-coupon-button:hover {
+  background: #c9473d;
+  box-shadow: 0 10px 22px rgba(201, 71, 61, 0.3);
+  transform: translateY(-1px);
+}
+
+.gamsgo-code-action .deal-coupon-button {
+  min-height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 12px;
+  background: #df5b4f;
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(223, 91, 79, 0.24);
+  font-size: 14px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.gamsgo-code-action .deal-coupon-button:hover {
+  background: #c9473d;
+  box-shadow: 0 10px 22px rgba(201, 71, 61, 0.3);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 560px) {
+  .gamsgo-ai-links-section {
+    padding-top: 36px;
+  }
+
+  .gamsgo-ai-link {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 13px;
+    padding: 15px;
+  }
+
+  .gamsgo-ai-link > div { align-self: center; }
+  .gamsgo-ai-link .deal-coupon-button {
+    grid-column: 1 / -1;
+    width: 100%;
+    min-width: 0;
   }
 }

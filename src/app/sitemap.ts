@@ -18,6 +18,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
       images: [getOgImageUrl("")],
     },
+    {
+      url: `${siteConfig.url}/gamsgo`,
+      lastModified: new Date(latestPostDate),
+      changeFrequency: "weekly",
+      priority: 0.95,
+      images: [getOgImageUrl("/gamsgo")],
+    },
     ...pages.map((page) => ({
       url: `${siteConfig.url}/${page.slug}`,
       lastModified: new Date(page.updatedAt),

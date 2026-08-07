@@ -1,11 +1,10 @@
 import Link from "next/link";
 
 const navItems = [
-  { href: "/#popular-deals", label: "할인코드" },
-  { href: "/topics/pricing", label: "서비스별 할인" },
-  { href: "/compare", label: "구독 비교" },
-  { href: "/topics/errors", label: "결제·적용 문제" },
-  { href: "/disclaimer", label: "이용 전 확인" },
+  { href: "/gamsgo", label: "겜스고 할인코드" },
+  { href: "/topics/pricing", label: "AI 할인 꿀팁" },
+  { href: "/compare", label: "AI 비교" },
+  { href: "/topics/errors", label: "AI 오류 해결법" },
 ];
 
 export function Header() {
