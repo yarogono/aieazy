@@ -1,28 +1,33 @@
 import Link from "next/link";
 
 const navItems = [
-  { href: "/tools/chatgpt", label: "ChatGPT" },
-  { href: "/topics/prompts", label: "프롬프트" },
-  { href: "/topics/pricing", label: "가격" },
-  { href: "/topics/errors", label: "오류" },
-  { href: "/compare", label: "비교" },
+  { href: "/#popular-deals", label: "할인코드" },
+  { href: "/topics/pricing", label: "서비스별 할인" },
+  { href: "/compare", label: "구독 비교" },
+  { href: "/topics/errors", label: "결제·적용 문제" },
+  { href: "/disclaimer", label: "이용 전 확인" },
 ];
 
 export function Header() {
   return (
     <header className="site-header-wrap">
       <div className="site-header-top">
-        <Link href="/tools/chatgpt" className="header-pill">
-          <span>1</span>
-          ChatGPT 입문 가이드
+        <Link href="/#popular-deals" className="header-pill">
+          <span aria-hidden="true">% </span>
+          오늘의 AI 할인코드
         </Link>
-        <Link href="/" className="brand" aria-label="AI 쉬움 홈">
+        <Link href="/" className="brand" aria-label="AI EAZY 홈">
           <span aria-hidden="true">AI</span>
-          AI 쉬움
+          AI EAZY
         </Link>
-        <Link href="/compare" className="header-promo">
-          AI 도구 비교 바로가기
-        </Link>
+        <a
+          href="https://www.gamsgo.com/partner/xV82m"
+          className="header-promo"
+          target="_blank"
+          rel="sponsored nofollow"
+        >
+          겜스고 할인코드 JMHR5 확인 ↗
+        </a>
       </div>
       <nav className="site-header-nav" aria-label="주요 메뉴">
         {navItems.map((item) => (

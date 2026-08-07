@@ -116,7 +116,14 @@ main {
 .header-promo {
   justify-content: flex-end;
   min-width: 220px;
+  color: var(--accent-strong);
+}
+
+.header-promo:hover,
+.header-promo:focus-visible {
   color: var(--foreground);
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .site-header-nav {
