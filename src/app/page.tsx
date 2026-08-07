@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { adsenseConfig } from "@/content/ads";
 import { getAffiliate } from "@/content/affiliate";
 import { pages } from "@/content/pages";
+import { siteConfig } from "@/content/site";
 import { aiTools } from "@/content/tools";
 import { allHubs } from "@/content/topics";
 import { createSiteIdentityJsonLd } from "@/lib/seo";
@@ -69,6 +70,33 @@ export default function Home() {
             ))}
           </div>
           <p className="affiliate-note">일부 링크는 제휴 링크입니다. 링크를 통해 구매해도 이용자에게 추가 비용은 없습니다.</p>
+        </section>
+
+        <section className="section gamsgo-guide" aria-labelledby="gamsgo-guide-title">
+          <div className="section-heading">
+            <p className="eyebrow">겜스고 AI 구독 할인 가이드</p>
+            <h2 id="gamsgo-guide-title">겜스고 클로드·제미나이·챗GPT 할인 정보</h2>
+            <p>
+              겜스고에서 AI 구독 상품을 확인할 때는 할인코드만 보지 말고 서비스별 이용 방식,
+              보증 조건, 환불 규칙을 함께 비교해야 합니다. 겜스고 클로드, 겜스고 제미나이,
+              겜스고 챗GPT 상품은 시점과 상품 유형에 따라 조건이 달라질 수 있습니다.
+            </p>
+          </div>
+          <div className="gamsgo-guide-links" aria-label="겜스고 AI 관련 가이드">
+            <Link href="/claude">겜스고 클로드 할인 조건 확인</Link>
+            <Link href="/gemini">겜스고 제미나이 할인 조건 확인</Link>
+            <Link href="/chatgpt-price">겜스고 챗GPT 가격·할인 비교</Link>
+            <Link href="/topics/pricing">AI 구독 할인 가이드 전체 보기</Link>
+          </div>
+          <p className="gamsgo-guide-note">
+            수노 AI와 젠스파크 AI는 겜스고의 현재 상품 목록과 이용 조건을 확인한 뒤 안내하겠습니다.
+            공식 서비스 정보는 {siteConfig.relatedServices.map((service, index) => (
+              <Fragment key={service.url}>
+                <a href={service.url} target="_blank" rel="noopener noreferrer">{service.name}</a>
+                {index < siteConfig.relatedServices.length - 1 ? ", " : ""}
+              </Fragment>
+            ))}에서 확인할 수 있습니다.
+          </p>
         </section>
 
         <section className="section tool-picker" aria-labelledby="tool-picker-title">

@@ -200,6 +200,13 @@ main {
   font-size: 13px;
 }
 
+.gamsgo-guide { border-block: 1px solid var(--line); }
+.gamsgo-guide-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.gamsgo-guide-links a { display: inline-flex; align-items: center; min-height: 42px; padding: 0 15px; border: 1px solid var(--line); border-radius: 999px; color: var(--foreground); font-size: 14px; font-weight: 800; }
+.gamsgo-guide-links a:hover { border-color: var(--accent-strong); color: var(--accent-strong); }
+.gamsgo-guide-note { margin-top: 18px; color: var(--muted); font-size: 14px; }
+.gamsgo-guide-note a { color: var(--foreground); font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
+
 .hero {
   min-height: 500px;
   display: flex;

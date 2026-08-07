@@ -20,9 +20,21 @@ export const siteConfig = {
   name: "AI \uC26C\uC6C0",
   alternateName: "AIEazy",
   description:
-    "AI \uB3C4\uAD6C\uB97C \uCC98\uC74C \uC4F0\uB294 \uC0AC\uB78C\uC744 \uC704\uD55C \uC26C\uC6B4 \uC0AC\uC6A9\uBC95, \uAC00\uACA9, \uC624\uB958 \uD574\uACB0, \uBE44\uAD50 \uC815\uBCF4\uC785\uB2C8\uB2E4.",
+    "AI 도구 사용법과 가격, 오류 해결, 비교 정보를 정리합니다. 겜스고 클로드, 겜스고 제미나이, 겜스고 챗GPT, 겜스고 수노 AI, 겜스고 젠스파크 AI 할인과 구독 조건도 공식 출처를 확인해 안내합니다.",
   url: getSiteUrl(),
-  sameAs: [],
+  sameAs: [
+    "https://x.com/gongbuhaneunga1",
+    "https://www.facebook.com/people/%EC%82%B4%EB%A6%BC%EA%B0%9C%EB%AF%B8/61576147899615/",
+    "https://www.threads.com/@reviewant1?hl=ko",
+  ],
+  socialChannels: [
+    { name: "X", url: "https://x.com/gongbuhaneunga1" },
+    {
+      name: "Facebook",
+      url: "https://www.facebook.com/people/%EC%82%B4%EB%A6%BC%EA%B0%9C%EB%AF%B8/61576147899615/",
+    },
+    { name: "Threads", url: "https://www.threads.com/@reviewant1?hl=ko" },
+  ],
   relatedServices: [
     { name: "ChatGPT", url: "https://chatgpt.com/" },
     { name: "Gemini", url: "https://gemini.google.com/" },

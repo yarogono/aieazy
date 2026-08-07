@@ -32,6 +32,21 @@ export function Footer() {
             ))}
           </nav>
         </div>
+        <div className="site-footer-related">
+          <span>공식 SNS</span>
+          <nav aria-label="공식 SNS">
+            {siteConfig.socialChannels.map((channel) => (
+              <a
+                key={channel.url}
+                href={channel.url}
+                target="_blank"
+                rel="me noopener noreferrer"
+              >
+                {channel.name}
+              </a>
+            ))}
+          </nav>
+        </div>
       </div>
     </footer>
   );

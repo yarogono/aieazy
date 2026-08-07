@@ -23,8 +23,7 @@ export const metadata: Metadata = {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
   },
-  description:
-    "ChatGPT, Cursor AI, Claude, Gemini 같은 AI 도구를 어렵지 않게 이해할 수 있도록 가격, 사용법, 오류 해결, 비교 정보를 정리합니다.",
+  description: siteConfig.description,
   openGraph: {
     title: siteConfig.name,
     description: siteConfig.description,
