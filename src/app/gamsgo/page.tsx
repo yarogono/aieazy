@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     locale: "ko_KR",
     url: "/gamsgo",
     siteName: siteConfig.name,
-    images: [{ url: getOgImageUrl("/gamsgo"), width: 1200, height: 630, alt: "겜스고 할인 코드 및 AI 구독 할인 정보" }],
+    images: [{ url: getOgImageUrl(""), width: 1200, height: 630, alt: "겜스고 할인 코드 및 AI 구독 할인 정보" }],
   },
 };
 
