@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import Link from "next/link";
 import { AdSenseUnit } from "@/components/AdSenseUnit";
+import { AffiliateCopyButton } from "@/components/AffiliateCopyButton";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
@@ -13,12 +14,19 @@ import { allHubs } from "@/content/topics";
 import { createSiteIdentityJsonLd } from "@/lib/seo";
 
 const featuredDeals = [
-  { name: "ChatGPT Plus", category: "AI 챗봇", icon: "✦", accent: "purple", href: "/tools/chatgpt", bullets: ["글쓰기·번역·자료 분석", "무료 버전과 차이 비교"] },
-  { name: "Claude Pro", category: "AI 챗봇", icon: "C", accent: "orange", href: "/tools/claude", bullets: ["긴 문서와 리서치에 강점", "ChatGPT와 기능 비교"] },
-  { name: "Gemini Advanced", category: "AI 챗봇", icon: "✧", accent: "blue", href: "/tools/gemini", bullets: ["Google 서비스와 함께 사용", "요금제·무료 사용법 정리"] },
-  { name: "Cursor Pro", category: "개발 도구", icon: "⌘", accent: "dark", href: "/tools/cursor-ai", bullets: ["AI 코드 작성·수정", "학생 할인과 요금 비교"] },
-  { name: "Perplexity Pro", category: "검색형 AI", icon: "P", accent: "teal", href: "/tools/perplexity", bullets: ["출처가 필요한 검색에 적합", "무료·유료 기능 비교"] },
-  { name: "Midjourney", category: "이미지 생성", icon: "◈", accent: "pink", href: "/tools/midjourney", bullets: ["AI 이미지 생성 구독", "플랜별 차이와 주의사항"] },
+  { name: "챗GPT 구독 할인", category: "AI 챗봇", icon: "✦", accent: "purple", href: "/tools/chatgpt" },
+  { name: "클로드 구독 할인", category: "AI 챗봇", icon: "C", accent: "orange", href: "/tools/claude" },
+  { name: "제미나이 구독 할인", category: "AI 챗봇", icon: "✧", accent: "blue", href: "/tools/gemini" },
+  { name: "커서 AI 구독 할인", category: "개발 도구", icon: "⌘", accent: "dark", href: "/tools/cursor-ai" },
+  { name: "퍼플렉시티 구독 할인", category: "검색형 AI", icon: "P", accent: "teal", href: "/tools/perplexity" },
+  { name: "미드저니 구독 할인", category: "이미지 생성", icon: "◈", accent: "pink", href: "/tools/midjourney" },
+  { name: "젠스파크 AI 구독 할인", category: "AI 검색", icon: "G", accent: "blue", href: "/topics/pricing" },
+  { name: "그록 구독 할인", category: "AI 챗봇", icon: "X", accent: "dark", href: "/topics/pricing" },
+  { name: "미리캔버스 구독 할인", category: "디자인 도구", icon: "M", accent: "purple", href: "/topics/pricing" },
+  { name: "일레븐랩스 구독 할인", category: "음성 생성", icon: "11", accent: "orange", href: "/topics/pricing" },
+  { name: "감마 구독 할인", category: "프레젠테이션", icon: "γ", accent: "teal", href: "/topics/pricing" },
+  { name: "마누스 구독 할인", category: "AI 에이전트", icon: "M", accent: "pink", href: "/topics/pricing" },
+  { name: "Replit 구독 할인", category: "개발 도구", icon: "R", accent: "dark", href: "/topics/pricing" },
 ];
 
 export default function Home() {
@@ -62,10 +70,8 @@ export default function Home() {
             {featuredDeals.map((deal, index) => (
               <article className={`deal-card deal-card-${deal.accent}`} key={deal.name}>
                 {index < 3 ? <span className="deal-card-label">인기 {index + 1}</span> : null}
-                <div className="deal-card-top"><span className="deal-icon" aria-hidden="true">{deal.icon}</span><div><span className="deal-category">{deal.category}</span><h3>{deal.name}</h3></div></div>
-                <div className="deal-price"><small>할인 가격</small><strong>최저가 확인</strong><span>판매처에서 최신 가격 보기</span></div>
-                <ul>{deal.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
-                <div className="deal-card-actions"><Link href={deal.href}>상세 정보</Link>{gamsgo ? <a href={gamsgo.href} target="_blank" rel="sponsored nofollow">할인 가격 확인 <span>↗</span></a> : null}</div>
+                <div className="deal-card-top"><span className="deal-icon" aria-hidden="true">{deal.icon}</span><h3>{deal.name}</h3></div>
+                <div className="deal-card-actions">{gamsgo ? <AffiliateCopyButton href={gamsgo.href} code={gamsgo.code ?? ""} label="할인 링크 바로가기" /> : null}</div>
               </article>
             ))}
           </div>
@@ -79,7 +85,9 @@ export default function Home() {
             <p>
               겜스고에서 AI 구독 상품을 확인할 때는 할인코드만 보지 말고 서비스별 이용 방식,
               보증 조건, 환불 규칙을 함께 비교해야 합니다. 겜스고 클로드, 겜스고 제미나이,
-              겜스고 챗GPT 상품은 시점과 상품 유형에 따라 조건이 달라질 수 있습니다.
+              겜스고 챗GPT뿐 아니라 겜스고 젠스파크 AI, 겜스고 그록, 겜스고 미리캔버스,
+              겜스고 일레븐랩스, 겜스고 감마, 겜스고 마누스, 겜스고 Replit 상품도
+              시점과 상품 유형에 따라 조건이 달라질 수 있습니다.
             </p>
           </div>
           <div className="gamsgo-guide-links" aria-label="겜스고 AI 관련 가이드">
@@ -89,7 +97,7 @@ export default function Home() {
             <Link href="/topics/pricing">AI 구독 할인 가이드 전체 보기</Link>
           </div>
           <p className="gamsgo-guide-note">
-            수노 AI와 젠스파크 AI는 겜스고의 현재 상품 목록과 이용 조건을 확인한 뒤 안내하겠습니다.
+            수노 AI를 포함한 각 서비스는 겜스고의 현재 상품 목록과 이용 조건을 확인한 뒤 안내하겠습니다.
             공식 서비스 정보는 {siteConfig.relatedServices.map((service, index) => (
               <Fragment key={service.url}>
                 <a href={service.url} target="_blank" rel="noopener noreferrer">{service.name}</a>

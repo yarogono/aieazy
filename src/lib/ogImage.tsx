@@ -7,42 +7,6 @@ type OgCardProps = {
   label?: string;
 };
 
-type HighlightRule = {
-  terms: string[];
-  lines: (title: string) => string[];
-};
-
-const highlightRules: HighlightRule[] = [
-  {
-    terms: ["프롬프트 모음"],
-    lines: () => ["챗지피티", "프롬프트 모음"],
-  },
-  {
-    terms: ["아카이브"],
-    lines: () => ["챗지피티", "아카이브"],
-  },
-  {
-    terms: ["로그인", "오류"],
-    lines: () => ["챗GPT", "로그인 오류"],
-  },
-  {
-    terms: ["가격", "요금제"],
-    lines: () => ["ChatGPT", "가격 비교"],
-  },
-  {
-    terms: ["환불", "구독"],
-    lines: () => ["챗지피티", "환불 방법"],
-  },
-  {
-    terms: ["이미지", "업로드"],
-    lines: () => ["이미지 업로드", "오류 해결"],
-  },
-  {
-    terms: ["음성대화"],
-    lines: () => ["챗지피티", "음성대화"],
-  },
-];
-
 function cleanTitle(title: string) {
   return title
     .replace(/\([^)]*\)/g, " ")
@@ -51,74 +15,40 @@ function cleanTitle(title: string) {
     .trim();
 }
 
-function chunkTitle(title: string) {
+function getTitleLines(title: string) {
   const words = cleanTitle(title).split(" ").filter(Boolean);
-  const chunks: string[] = [];
+  const lines: string[] = [];
   let current = "";
 
   for (const word of words) {
     const next = current ? `${current} ${word}` : word;
 
-    if (next.length > 10 && current) {
-      chunks.push(current);
+    if (current && next.length > 12) {
+      lines.push(current);
       current = word;
     } else {
       current = next;
     }
 
-    if (chunks.length === 1) {
+    if (lines.length === 1) {
       break;
     }
   }
 
-  if (current && chunks.length < 2) {
-    chunks.push(current);
+  if (current) {
+    lines.push(current);
   }
 
-  return chunks.slice(0, 2);
+  return lines.slice(0, 2);
 }
 
-function getTitleLines(title: string) {
-  const normalizedTitle = cleanTitle(title).toLowerCase();
-  const rule = highlightRules.find((item) => item.terms.every((term) => normalizedTitle.includes(term.toLowerCase())));
-
-  if (rule) {
-    return rule.lines(title);
-  }
-
-  return chunkTitle(title);
+function getDescription(description = "") {
+  const normalized = description.replace(/\s+/g, " ").trim();
+  return normalized.length > 92 ? `${normalized.slice(0, 92)}…` : normalized;
 }
 
-function getAccent(label: string) {
-  if (label.includes("ChatGPT")) {
-    return {
-      background: "#123a8c",
-      title: "#ffffff",
-      highlight: "#ffe500",
-      border: "#ffe500",
-    };
-  }
-
-  if (label.includes("문제") || label.includes("오류")) {
-    return {
-      background: "#4f1d95",
-      title: "#ffffff",
-      highlight: "#ffe500",
-      border: "#ff4d4d",
-    };
-  }
-
-  return {
-    background: "#123a8c",
-    title: "#ffffff",
-    highlight: "#ffe500",
-    border: "#ffe500",
-  };
-}
-
-export function OgCard({ title, label = "AI Guide" }: OgCardProps) {
+export function OgCard({ title, description, label = "AI Guide" }: OgCardProps) {
   const titleLines = getTitleLines(title);
-  const accent = getAccent(label);
 
   return (
     <div
@@ -126,58 +56,119 @@ export function OgCard({ title, label = "AI Guide" }: OgCardProps) {
         width: "100%",
         height: "100%",
         display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        background: accent.background,
-        color: accent.title,
-        padding: "48px",
+        position: "relative",
+        overflow: "hidden",
+        background: "linear-gradient(135deg, #f8fafc 0%, #eef2ff 56%, #e0f2fe 100%)",
+        color: "#111827",
+        padding: "58px 70px",
         boxSizing: "border-box",
         fontFamily: "OgKorean, Arial, sans-serif",
       }}
     >
       <div
         style={{
+          position: "absolute",
+          width: 330,
+          height: 330,
+          right: -80,
+          top: -110,
+          borderRadius: 999,
+          background: "#c4b5fd",
+          opacity: 0.45,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          width: 260,
+          height: 260,
+          right: 230,
+          bottom: -170,
+          borderRadius: 999,
+          background: "#99f6e4",
+          opacity: 0.5,
+        }}
+      />
+      <div
+        style={{
           width: "100%",
           height: "100%",
           display: "flex",
-          flexDirection: "column",
           alignItems: "center",
-          justifyContent: "center",
-          background: accent.background,
-          border: `22px solid ${accent.border}`,
-          borderRadius: "24px",
-          padding: "42px 56px",
-          boxSizing: "border-box",
+          justifyContent: "space-between",
+          position: "relative",
+          zIndex: 1,
         }}
       >
         <div
           style={{
+            width: 760,
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            alignItems: "center",
-            gap: "24px",
-            overflow: "hidden",
           }}
         >
-          {titleLines.map((line, index) => (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              color: "#6366f1",
+              fontSize: 24,
+              fontWeight: 900,
+              letterSpacing: 1,
+              marginBottom: 28,
+            }}
+          >
+            AIEAZY · {label}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 4,
+              fontSize: titleLines.some((line) => line.length > 10) ? 66 : 78,
+              lineHeight: 1.08,
+              fontWeight: 900,
+              letterSpacing: -2,
+            }}
+          >
+            {titleLines.map((line, index) => (
+              <div key={`${line}-${index}`} style={{ display: "flex", color: index === 1 ? "#4f46e5" : "#111827" }}>
+                {line}
+              </div>
+            ))}
+          </div>
+          {description ? (
             <div
-              key={line}
               style={{
                 display: "flex",
-                fontSize: line.length > 8 ? "116px" : "148px",
-                fontWeight: 900,
-                lineHeight: 0.9,
-                letterSpacing: 0,
-                color: index === 1 ? accent.highlight : accent.title,
-                textShadow:
-                  "4px 0 0 #000000, -4px 0 0 #000000, 0 4px 0 #000000, 0 -4px 0 #000000, 4px 4px 0 #000000, -4px -4px 0 #000000, 4px -4px 0 #000000, -4px 4px 0 #000000, 0 10px 0 rgba(0, 0, 0, 0.38)",
-                whiteSpace: "nowrap",
+                marginTop: 28,
+                color: "#475467",
+                fontSize: 25,
+                lineHeight: 1.35,
+                fontWeight: 500,
               }}
             >
-              {line}
+              {getDescription(description)}
             </div>
-          ))}
+          ) : null}
+        </div>
+        <div
+          style={{
+            width: 230,
+            height: 230,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: 36,
+            background: "linear-gradient(145deg, #312e81 0%, #4f46e5 58%, #0f766e 100%)",
+            color: "#ffffff",
+            boxShadow: "0 24px 50px rgba(49, 46, 129, 0.24)",
+          }}
+        >
+          <div style={{ display: "flex", fontSize: 64, fontWeight: 900, lineHeight: 1 }}>AI</div>
+          <div style={{ display: "flex", marginTop: 16, color: "#ccfbf1", fontSize: 25, fontWeight: 900 }}>할인 가이드</div>
         </div>
       </div>
     </div>

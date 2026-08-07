@@ -20,7 +20,7 @@ export const siteConfig = {
   name: "AI \uC26C\uC6C0",
   alternateName: "AIEazy",
   description:
-    "AI 도구 사용법과 가격, 오류 해결, 비교 정보를 정리합니다. 겜스고 클로드, 겜스고 제미나이, 겜스고 챗GPT, 겜스고 수노 AI, 겜스고 젠스파크 AI 할인과 구독 조건도 공식 출처를 확인해 안내합니다.",
+    "AI 도구 사용법과 가격, 오류 해결, 비교 정보를 정리합니다. 겜스고 클로드, 겜스고 제미나이, 겜스고 챗GPT, 겜스고 수노 AI, 겜스고 젠스파크 AI, 겜스고 그록, 겜스고 미리캔버스, 겜스고 일레븐랩스, 겜스고 감마, 겜스고 마누스, 겜스고 Replit 할인과 구독 조건도 공식 출처를 확인해 안내합니다.",
   url: getSiteUrl(),
   sameAs: [
     "https://x.com/gongbuhaneunga1",
