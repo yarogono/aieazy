@@ -23,4 +23,9 @@ export const siteConfig = {
     "AI \uB3C4\uAD6C\uB97C \uCC98\uC74C \uC4F0\uB294 \uC0AC\uB78C\uC744 \uC704\uD55C \uC26C\uC6B4 \uC0AC\uC6A9\uBC95, \uAC00\uACA9, \uC624\uB958 \uD574\uACB0, \uBE44\uAD50 \uC815\uBCF4\uC785\uB2C8\uB2E4.",
   url: getSiteUrl(),
   sameAs: [],
+  relatedServices: [
+    { name: "ChatGPT", url: "https://chatgpt.com/" },
+    { name: "Gemini", url: "https://gemini.google.com/" },
+    { name: "Claude", url: "https://claude.ai/" },
+  ],
 };

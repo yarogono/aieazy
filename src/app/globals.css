@@ -176,6 +176,30 @@ main {
   color: var(--foreground);
 }
 
+.site-footer-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+}
+
+.site-footer-related {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.site-footer-related > span {
+  color: var(--foreground);
+  font-weight: 700;
+}
+
+.site-footer-related nav {
+  font-size: 13px;
+}
+
 .hero {
   min-height: 500px;
   display: flex;
@@ -1507,6 +1531,15 @@ ins.adsbygoogle[data-ad-status="unfilled"] {
     width: min(100% - 28px, 1120px);
     flex-direction: column;
     margin-top: 18px;
+  }
+
+  .site-footer-links,
+  .site-footer-related {
+    align-items: flex-start;
+  }
+
+  .site-footer-links {
+    width: 100%;
   }
 
   .site-footer nav {
